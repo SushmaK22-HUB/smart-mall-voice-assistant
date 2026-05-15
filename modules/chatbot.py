@@ -1,15 +1,13 @@
-# modules/chatbot.py
-
 import google.generativeai as genai
 
-# Paste your Gemini API key here
-GEMINI_API_KEY = "YOUR_API_KEY_HERE"
+# Your working Gemini API Key
+GEMINI_API_KEY = "AIzaSyAPY-iiz7pSvOEDDMTIyH4VEKGuyBASHSE"
 
 # Configure Gemini
 genai.configure(api_key=GEMINI_API_KEY)
 
 # Load Gemini Model
-model = genai.GenerativeModel("gemini-1.5-flash")
+model = genai.GenerativeModel("gemini-2.5-flash")
 
 
 def get_response(user_input):
@@ -26,7 +24,7 @@ def get_response(user_input):
 # Chatbot Testing
 if __name__ == "__main__":
 
-    print(" Smart Mall AI Assistant Started")
+    print("🛍️ Smart Mall AI Assistant Started")
     print("Type 'exit' to stop\n")
 
     while True:
