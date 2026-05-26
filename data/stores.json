@@ -1,0 +1,22 @@
+[
+    {
+        "name": "ADIDAS",
+        "category": "Clothing",
+        "floor": "First Floor"
+    },
+    {
+        "name": "CROMA",
+        "category": "Electronics",
+        "floor": "Second Floor"
+    },
+    {
+        "name": "KFC",
+        "category": "Restaurant",
+        "floor": "Third Floor"
+    },
+    {
+        "name": "PVR",
+        "category": "Entertainment",
+        "floor": "Fourth Floor"
+    }
+]
