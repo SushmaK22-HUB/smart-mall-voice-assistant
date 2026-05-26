@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Nike",
+    "floor": "Second Floor",
+    "location": "Main Entrance",
+    "category": "Sportswear"
+  },
+  {
+    "name": "Zara",
+    "floor": "First Floor",
+    "location": "Near Escalator",
+    "category": "Fashion"
+  }
+]

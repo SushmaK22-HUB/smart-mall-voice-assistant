@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Washroom",
+    "floor": "Ground Floor",
+    "location": "Near Food Court"
+  },
+  {
+    "name": "ATM",
+    "floor": "Basement",
+    "location": "Near Parking"
+  },
+  {
+    "name": "Lift",
+    "floor": "Ground Floor",
+    "location": "Near Main Entrance"
+  }
+]

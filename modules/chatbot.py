@@ -1,19 +1,131 @@
 import google.generativeai as genai
 
-# Your working Gemini API Key
-GEMINI_API_KEY = "AIzaSyAPY-iiz7pSvOEDDMTIyH4VEKGuyBASHSE"
+from modules.search_engine import (
+    search_store,
+    search_facility,
+    search_food,
+    get_parking_info,
+    get_offers,
+    get_jobs,
+    get_events,
+    get_emergency,
+    get_all_stores,
+    get_all_facilities,
+    get_all_food
+)
 
-# Configure Gemini
+# ---------------- GEMINI CONFIG ---------------- #
+
+GEMINI_API_KEY = "AIzaSyDC12VxKPYozlG8jKKrXaM1i82ivhIt8z4"
+
 genai.configure(api_key=GEMINI_API_KEY)
 
-# Load Gemini Model
 model = genai.GenerativeModel("gemini-2.5-flash")
 
+# ---------------- MAIN RESPONSE FUNCTION ---------------- #
 
 def get_response(user_input):
 
+    user_input_lower = user_input.lower()
+
+    # ---------- ALL STORES ---------- #
+
+    if "all stores" in user_input_lower or "stores list" in user_input_lower:
+        return get_all_stores()
+
+    # ---------- ALL FACILITIES ---------- #
+
+    if "all facilities" in user_input_lower:
+        return get_all_facilities()
+
+    # ---------- ALL FOOD ---------- #
+
+    if "all food" in user_input_lower or "food outlets" in user_input_lower:
+        return get_all_food()
+
+    # ---------- ALL JOBS ---------- #
+
+    if "all jobs" in user_input_lower:
+        return get_jobs()
+
+    # ---------- ALL OFFERS ---------- #
+
+    if "all offers" in user_input_lower:
+        return get_offers()
+
+    # ---------- ALL EVENTS ---------- #
+
+    if "all events" in user_input_lower:
+        return get_events()
+
+    # ---------- STORE SEARCH ---------- #
+
+    store_result = search_store(user_input)
+
+    if store_result:
+        return store_result
+
+    # ---------- FACILITY SEARCH ---------- #
+
+    facility_result = search_facility(user_input)
+
+    if facility_result:
+        return facility_result
+
+    # ---------- FOOD SEARCH ---------- #
+
+    food_result = search_food(user_input)
+
+    if food_result:
+        return food_result
+
+    # ---------- PARKING ---------- #
+
+    if "parking" in user_input_lower:
+        return get_parking_info()
+
+    # ---------- OFFERS ---------- #
+
+    if "offer" in user_input_lower:
+        return get_offers()
+
+    # ---------- JOBS ---------- #
+
+    if "job" in user_input_lower:
+        return get_jobs()
+
+    # ---------- EVENTS ---------- #
+
+    if "event" in user_input_lower:
+        return get_events()
+
+    # ---------- EMERGENCY ---------- #
+
+    if (
+        "emergency" in user_input_lower
+        or "exit" in user_input_lower
+        or "fire" in user_input_lower
+    ):
+        return get_emergency()
+
+    # ---------- GEMINI FALLBACK ---------- #
+
     try:
-        response = model.generate_content(user_input)
+
+        response = model.generate_content(
+            f"""
+            You are a Smart Mall Assistant.
+
+            Rules:
+            - Keep answers short.
+            - Focus only on mall-related help.
+            - Be polite.
+            - Do not give long explanations.
+
+            User Question:
+            {user_input}
+            """
+        )
 
         return response.text
 
@@ -21,7 +133,8 @@ def get_response(user_input):
         return f"Error: {e}"
 
 
-# Chatbot Testing
+# ---------------- TERMINAL TEST ---------------- #
+
 if __name__ == "__main__":
 
     print("🛍️ Smart Mall AI Assistant Started")
@@ -32,6 +145,7 @@ if __name__ == "__main__":
         user = input("You: ")
 
         if user.lower() == "exit":
+
             print("Assistant: Thank you for visiting Smart Mall")
             break
 
