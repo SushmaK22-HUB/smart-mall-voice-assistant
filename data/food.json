@@ -1,12 +1,531 @@
 [
   {
-    "name": "KFC",
-    "floor": "Third Floor",
-    "location": "Food Court"
+    "food_category": "Fast Food",
+    "restaurants": [
+      {
+        "name": "KFC",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chicken Bucket",
+          "Zinger Burger",
+          "French Fries",
+          "Popcorn Chicken"
+        ]
+      },
+      {
+        "name": "Burger King",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Whopper",
+          "Veg Burger",
+          "French Fries",
+          "Chicken Wings"
+        ]
+      },
+      {
+        "name": "Pizza Hut",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Veg Pizza",
+          "Chicken Pizza",
+          "Garlic Bread",
+          "Pasta"
+        ]
+      },
+      {
+        "name": "Dominos",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Farmhouse Pizza",
+          "Cheese Burst",
+          "Garlic Bread",
+          "Choco Lava"
+        ]
+      },
+      {
+        "name": "Subway",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Veg Sub",
+          "Chicken Teriyaki",
+          "Cookies",
+          "Cold Coffee"
+        ]
+      },
+      {
+        "name": "Taco Bell",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Tacos",
+          "Wraps",
+          "Burritos",
+          "Nachos"
+        ]
+      },
+      {
+        "name": "WOW Momo",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Veg Momo",
+          "Chicken Momo",
+          "Fried Momo",
+          "Noodles"
+        ]
+      },
+      {
+        "name": "McDonalds",
+        "floor": "Fourth Floor",
+        "menu": [
+          "McAloo Tikki",
+          "Chicken Burger",
+          "French Fries",
+          "McFlurry"
+        ]
+      },
+      {
+        "name": "California Burrito",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Burrito",
+          "Rice Bowl",
+          "Nachos",
+          "Tacos"
+        ]
+      },
+      {
+        "name": "Burger Division",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Cheese Burger",
+          "Chicken Burger",
+          "Fries",
+          "Cold Drinks"
+        ]
+      }
+    ]
   },
+
   {
-    "name": "Pizza Hut",
-    "floor": "Third Floor",
-    "location": "Food Court"
+    "food_category": "Cafe & Desserts",
+    "restaurants": [
+      {
+        "name": "Starbucks",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Latte",
+          "Cold Coffee",
+          "Brownie",
+          "Sandwich"
+        ]
+      },
+      {
+        "name": "Cafe Coffee Day",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Cappuccino",
+          "Garlic Bread",
+          "Burger",
+          "Cold Coffee"
+        ]
+      },
+      {
+        "name": "Chatime",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Bubble Tea",
+          "Milk Tea",
+          "Snacks",
+          "Cold Tea"
+        ]
+      },
+      {
+        "name": "Ibaco",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chocolate Scoop",
+          "Vanilla Scoop",
+          "Brownie Sundae",
+          "Ice Cream Cake"
+        ]
+      },
+      {
+        "name": "Keventers",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chocolate Shake",
+          "Mango Shake",
+          "Oreo Shake",
+          "KitKat Shake"
+        ]
+      },
+      {
+        "name": "Cream Stone",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Ice Cream",
+          "Falooda",
+          "Brownie Shake",
+          "Sundae"
+        ]
+      },
+      {
+        "name": "Belgian Waffle",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chocolate Waffle",
+          "Nutella Waffle",
+          "Ice Cream Waffle",
+          "Cold Coffee"
+        ]
+      },
+      {
+        "name": "Frozen Bottle",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Milkshake",
+          "Ice Cream",
+          "Cold Coffee",
+          "Brownie"
+        ]
+      },
+      {
+        "name": "Tea Time",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Tea",
+          "Puffs",
+          "Sandwich",
+          "Cookies"
+        ]
+      },
+      {
+        "name": "Barista",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Espresso",
+          "Latte",
+          "Brownie",
+          "Burger"
+        ]
+      }
+    ]
+  },
+
+  {
+    "food_category": "Restaurants & Dining",
+    "restaurants": [
+      {
+        "name": "Flechazo",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Buffet",
+          "Chinese",
+          "Desserts",
+          "Starters"
+        ]
+      },
+      {
+        "name": "Punjab Grill",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Butter Chicken",
+          "Paneer Tikka",
+          "Naan",
+          "Biryani"
+        ]
+      },
+      {
+        "name": "Krishnapatnam",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Fish Curry",
+          "Prawns Fry",
+          "Andhra Meals",
+          "Chicken Fry"
+        ]
+      },
+      {
+        "name": "Air Live",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Pizza",
+          "Pasta",
+          "Biryani",
+          "Mocktails"
+        ]
+      },
+      {
+        "name": "Boiler Room",
+        "floor": "Fifth Floor",
+        "menu": [
+          "BBQ",
+          "Grill Chicken",
+          "Pasta",
+          "Beverages"
+        ]
+      },
+      {
+        "name": "Ala Dakshinapuramlo",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Dosa",
+          "Andhra Meals",
+          "Chicken Fry",
+          "Curd Rice"
+        ]
+      },
+      {
+        "name": "The Grand Trunk Road",
+        "floor": "Fifth Floor",
+        "menu": [
+          "North Indian Meals",
+          "Paneer Curry",
+          "Butter Naan",
+          "Lassi"
+        ]
+      },
+      {
+        "name": "Absolute Barbecue",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Buffet",
+          "BBQ Chicken",
+          "Starters",
+          "Desserts"
+        ]
+      },
+      {
+        "name": "Barbeque Nation",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Buffet",
+          "Chicken Grill",
+          "Desserts",
+          "Soup"
+        ]
+      },
+      {
+        "name": "Mainland China",
+        "floor": "Fifth Floor",
+        "menu": [
+          "Noodles",
+          "Fried Rice",
+          "Soup",
+          "Spring Rolls"
+        ]
+      }
+    ]
+  },
+
+  {
+    "food_category": "Snacks & Street Food",
+    "restaurants": [
+      {
+        "name": "Haldirams",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chaat",
+          "Samosa",
+          "Raj Kachori",
+          "Lassi"
+        ]
+      },
+      {
+        "name": "Bikanervala",
+        "floor": "Fourth Floor",
+        "menu": [
+          "North Indian Meals",
+          "Chaat",
+          "Sweets",
+          "Snacks"
+        ]
+      },
+      {
+        "name": "Pista House",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Haleem",
+          "Biryani",
+          "Kebabs",
+          "Desserts"
+        ]
+      },
+      {
+        "name": "Shah Ghouse",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Chicken Biryani",
+          "Mutton Biryani",
+          "Kebabs",
+          "Soft Drinks"
+        ]
+      },
+      {
+        "name": "Chutneys",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Idli",
+          "Dosa",
+          "Meals",
+          "Coffee"
+        ]
+      },
+      {
+        "name": "Paradise",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Hyderabadi Biryani",
+          "Kebabs",
+          "Desserts",
+          "Cool Drinks"
+        ]
+      },
+      {
+        "name": "Gokul Chaat",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Pani Puri",
+          "Dahi Puri",
+          "Samosa",
+          "Chaat"
+        ]
+      },
+      {
+        "name": "Momos Point",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Veg Momos",
+          "Chicken Momos",
+          "Noodles",
+          "Soup"
+        ]
+      },
+      {
+        "name": "Juice Junction",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Orange Juice",
+          "Mango Juice",
+          "Milkshake",
+          "Fruit Bowl"
+        ]
+      },
+      {
+        "name": "Kulfi House",
+        "floor": "Fourth Floor",
+        "menu": [
+          "Kulfi",
+          "Falooda",
+          "Ice Cream",
+          "Milkshake"
+        ]
+      }
+    ]
+  },
+
+  {
+    "food_category": "Bakery & Sweets",
+    "restaurants": [
+      {
+        "name": "Karachi Bakery",
+        "floor": "Ground Floor",
+        "menu": [
+          "Biscuits",
+          "Cake",
+          "Puffs",
+          "Pastries"
+        ]
+      },
+      {
+        "name": "Swiss Castle",
+        "floor": "Ground Floor",
+        "menu": [
+          "Birthday Cakes",
+          "Pastries",
+          "Brownies",
+          "Cookies"
+        ]
+      },
+      {
+        "name": "Monginis",
+        "floor": "Ground Floor",
+        "menu": [
+          "Chocolate Cake",
+          "Cupcakes",
+          "Puffs",
+          "Cookies"
+        ]
+      },
+      {
+        "name": "CakeZone",
+        "floor": "Ground Floor",
+        "menu": [
+          "Red Velvet Cake",
+          "Brownie",
+          "Cupcake",
+          "Pastries"
+        ]
+      },
+      {
+        "name": "Baskin Robbins",
+        "floor": "Ground Floor",
+        "menu": [
+          "Ice Cream",
+          "Sundae",
+          "Chocolate Scoop",
+          "Milkshake"
+        ]
+      },
+      {
+        "name": "Sweet Truth",
+        "floor": "Ground Floor",
+        "menu": [
+          "Cake",
+          "Brownie",
+          "Desserts",
+          "Ice Cream"
+        ]
+      },
+      {
+        "name": "Mad Over Donuts",
+        "floor": "Ground Floor",
+        "menu": [
+          "Chocolate Donut",
+          "Strawberry Donut",
+          "Coffee",
+          "Cold Drinks"
+        ]
+      },
+      {
+        "name": "Oven Story",
+        "floor": "Ground Floor",
+        "menu": [
+          "Pizza",
+          "Garlic Bread",
+          "Pasta",
+          "Desserts"
+        ]
+      },
+      {
+        "name": "7th Heaven",
+        "floor": "Ground Floor",
+        "menu": [
+          "Birthday Cake",
+          "Chocolate Cake",
+          "Pastries",
+          "Cookies"
+        ]
+      },
+      {
+        "name": "Bakingo",
+        "floor": "Ground Floor",
+        "menu": [
+          "Photo Cake",
+          "Cupcakes",
+          "Pastries",
+          "Brownies"
+        ]
+      }
+    ]
   }
 ]
