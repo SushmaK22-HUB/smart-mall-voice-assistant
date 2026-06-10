@@ -1,4 +1,77 @@
+[
+  {
+    "parking_name": "Basement Parking",
+    "levels": ["B1", "B2", "B3", "B4"],
+    "vehicle_type": "Cars and Bikes",
+    "capacity": {
+      "cars": 4000,
+      "bikes": 6000
+    },
+    "location": "Basement Area",
+    "description": "Multi-level parking facility available for mall visitors."
+  },
+  {
+    "parking_name": "Car Parking",
+    "levels": ["B1", "B2", "B3", "B4"],
+    "vehicle_type": "Cars",
+    "location": "Basement",
+    "description": "Dedicated parking spaces for cars."
+  },
+  {
+    "parking_name": "Bike Parking",
+    "levels": ["B1", "B2"],
+    "vehicle_type": "Motorcycles and Scooters",
+    "location": "Basement",
+    "description": "Dedicated parking area for two-wheelers."
+  },
+  {
+    "parking_name": "Valet Parking",
+    "levels": ["Ground Floor"],
+    "vehicle_type": "Cars",
+    "location": "Main Entrance",
+    "description": "Vehicle handover and pickup service available near the main entrance."
+  },
+  {
+    "parking_name": "Accessible Parking",
+    "levels": ["B1"],
+    "vehicle_type": "Special Access Vehicles",
+    "location": "Near Elevators",
+    "description": "Reserved parking spaces for differently-abled visitors."
+  },
+  {
+    "parking_name": "Family Parking",
+    "levels": ["B1"],
+    "vehicle_type": "Cars",
+    "location": "Near Family Entrance",
+    "description": "Convenient parking spaces for families with children."
+  },
+  {
+    "parking_name": "Electric Vehicle Parking",
+    "levels": ["B1"],
+    "vehicle_type": "Electric Cars",
+    "location": "Near Main Elevator",
+    "description": "Parking area reserved for electric vehicles."
+  },
+  {
+    "parking_name": "Emergency Vehicle Parking",
+    "levels": ["Ground Floor"],
+    "vehicle_type": "Emergency Vehicles",
+    "location": "Emergency Access Zone",
+    "description": "Reserved parking for ambulances and emergency services."
+  },
+  
 {
-  "floor": "Basement B1",
-  "charges": "₹50 for first 2 hours"
-}
+    "parking_name": "Parking Help Desk",
+    "levels": ["Ground Floor"],
+    "vehicle_type": "All Vehicles",
+    "location": "Near Main Entrance",
+    "description": "Assistance for parking-related queries and support."
+  },
+  {
+    "parking_name": "Parking Security",
+    "levels": ["All Parking Levels"],
+    "vehicle_type": "All Vehicles",
+    "location": "Parking Area",
+    "description": "24/7 CCTV monitoring and security surveillance."
+  }
+]

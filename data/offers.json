@@ -1,10 +1,137 @@
 [
   {
-    "store": "Nike",
-    "offer": "Flat 40% Off"
+    "offer_id": "OFF001",
+    "store_name": "Lifestyle",
+    "category": "Fashion",
+    "offer_title": "Flat 50% OFF",
+    "description": "Get up to 50% discount on selected fashion brands.",
+    "validity": "31-Dec-2025",
+    "floor": "Second Floor"
   },
   {
-    "store": "Zara",
-    "offer": "Buy 2 Get 1"
+    "offer_id": "OFF002",
+    "store_name": "Pantaloons",
+    "category": "Fashion",
+    "offer_title": "Buy 2 Get 1 Free",
+    "description": "Purchase any 2 apparel items and get 1 free.",
+    "validity": "31-Dec-2025",
+    "floor": "First Floor"
+  },
+  {
+    "offer_id": "OFF003",
+    "store_name": "Reliance Trends",
+    "category": "Fashion",
+    "offer_title": "Up to 60% OFF",
+    "description": "Special seasonal sale on men's and women's wear.",
+    "validity": "31-Dec-2025",
+    "floor": "Second Floor"
+  },
+  {
+    "offer_id": "OFF004",
+    "store_name": "Max",
+    "category": "Fashion",
+    "offer_title": "Flat 40% OFF",
+    "description": "Discount on selected clothing collections.",
+    "validity": "31-Dec-2025",
+    "floor": "First Floor"
+  },
+  {
+    "offer_id": "OFF005",
+    "store_name": "Croma",
+    "category": "Electronics",
+    "offer_title": "Exchange Offer",
+    "description": "Exchange old gadgets and get discounts on new products.",
+    "validity": "31-Dec-2025",
+    "floor": "Third Floor"
+  },
+  {
+    "offer_id": "OFF006",
+    "store_name": "Nykaa",
+    "category": "Beauty",
+    "offer_title": "20% OFF",
+    "description": "Get 20% discount on beauty and skincare products.",
+    "validity": "31-Dec-2025",
+    "floor": "Ground Floor"
+  },
+  {
+    "offer_id": "OFF007",
+    "store_name": "KFC",
+    "category": "Food",
+    "offer_title": "Bucket Combo Deal",
+    "description": "Special family bucket combo at discounted price.",
+    "validity": "31-Dec-2025",
+    "floor": "Fourth Floor"
+  },
+  {
+    "offer_id": "OFF008",
+    "store_name": "Burger King",
+    "category": "Food",
+    "offer_title": "Buy 1 Get 1 Burger",
+    "description": "Get one burger free on selected burger purchases.",
+    "validity": "31-Dec-2025",
+    "floor": "Fourth Floor"
+  },
+  {
+    "offer_id": "OFF009",
+    "store_name": "Pizza Hut",
+    "category": "Food",
+    "offer_title": "Family Meal Combo",
+    "description": "Special combo meal for families at discounted rates.",
+    "validity": "31-Dec-2025",
+    "floor": "Fourth Floor"
+  },
+  {
+    "offer_id": "OFF010",
+    "store_name": "Starbucks",
+    "category": "Cafe",
+    "offer_title": "Buy 1 Get 1 Coffee",
+    "description": "Get a free coffee on purchase of selected beverages.",
+    "validity": "31-Dec-2025",
+    "floor": "Fourth Floor"
+  },
+  {
+    "offer_id": "OFF011",
+    "store_name": "AMB Cinemas",
+    "category": "Entertainment",
+    "offer_title": "Weekend Movie Offer",
+    "description": "Discounted movie tickets on selected shows.",
+    "validity": "31-Dec-2025",
+    "floor": "Fifth Floor"
+  },
+  {
+    "offer_id": "OFF012",
+    "store_name": "Gaming Zone",
+    "category": "Entertainment",
+    "offer_title": "Play More Save More",
+    "description": "Get bonus gaming credits on recharge.",
+    "validity": "31-Dec-2025",
+    "floor": "Fourth Floor"
+  },
+  {
+    "offer_id": "OFF013",
+    "store_name": "SPAR Hypermarket",
+    "category": "Hypermarket",
+    "offer_title": "Weekend Mega Sale",
+    "description": "Special discounts on groceries and household products.",
+    "validity": "31-Dec-2025",
+    "floor": "Lower Ground Floor"
+  },
+  {
+    "offer_id": "OFF014",
+    "store_name": "Tanishq",
+    "category": "Jewellery",
+    "offer_title": "Making Charges Discount",
+    "description": "Reduced making charges on gold jewellery purchases.",
+    "validity": "31-Dec-2025",
+    "floor": "Ground Floor"
+  },
+  {
+    "offer_id": "OFF015",
+    "store_name": "The Body Shop",
+    "category": "Beauty",
+    "offer_title": "Flat 25% OFF",
+    "description": "Discount on selected skincare and beauty products.",
+    "validity": "31-Dec-2025",
+    "floor": "Ground Floor"
   }
 ]

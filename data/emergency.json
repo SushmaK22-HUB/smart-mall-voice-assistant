@@ -1,6 +1,74 @@
 [
   {
-    "type": "Emergency Exit",
-    "location": "Near Food Court"
+    "service_name": "First Aid Center",
+    "location": "Ground Floor",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "Provides immediate medical assistance for visitors."
+  },
+  {
+    "service_name": "Mall Security Control Room",
+    "location": "Ground Floor",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "24/7 security monitoring and emergency response."
+  },
+  {
+    "service_name": "Emergency Exit",
+    "location": "All Floors",
+    "contact_number": "N/A",
+    "description": "Clearly marked emergency evacuation exits."
+  },
+  {
+    "service_name": "Fire Safety Station",
+    "location": "All Floors",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "Fire extinguishers, alarms and fire response equipment."
+  },
+  {
+    "service_name": "Ambulance Service",
+    "location": "Main Entrance",
+    "contact_number": "108",
+    "description": "Emergency medical transportation service."
+  },
+  {
+    "service_name": "Police Assistance",
+    "location": "Security Desk",
+    "contact_number": "100",
+    "description": "Police support during emergencies."
+  },
+  {
+    "service_name": "Fire Department",
+    "location": "Emergency Response",
+    "contact_number": "101",
+    "description": "Fire emergency support and rescue operations."
+  },
+  {
+    "service_name": "Women's Safety Help Desk",
+    "location": "Ground Floor",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "Dedicated assistance for women visitors."
+  },
+  {
+    "service_name": "Lost and Found Center",
+    "location": "Information Desk",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "Handles lost and recovered items."
+  },
+  {
+    "service_name": "Emergency Assembly Point",
+    "location": "Outside Main Entrance",
+    "contact_number": "N/A",
+    "description": "Safe gathering area during evacuation."
+  },
+  {
+    "service_name": "CCTV Monitoring Center",
+    "location": "Security Office",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "24/7 surveillance monitoring across the mall."
+  },
+  {
+    "service_name": "Wheelchair Emergency Assistance",
+    "location": "Customer Service Desk",
+    "contact_number": "+91-XXXXXXXXXX",
+    "description": "Emergency mobility assistance for visitors."
   }
 ]
