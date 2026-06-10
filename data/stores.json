@@ -1,22 +1,296 @@
 [
-    {
-        "name": "ADIDAS",
-        "category": "Clothing",
-        "floor": "First Floor"
-    },
-    {
-        "name": "CROMA",
-        "category": "Electronics",
-        "floor": "Second Floor"
-    },
-    {
-        "name": "KFC",
-        "category": "Restaurant",
-        "floor": "Third Floor"
-    },
-    {
-        "name": "PVR",
-        "category": "Entertainment",
-        "floor": "Fourth Floor"
-    }
+  {
+    "name": "D-Mart",
+    "category": "Hypermarket",
+    "floor": "Lower Ground Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "Reliance Smart",
+    "category": "Supermarket",
+    "floor": "Lower Ground Floor",
+    "location": "Near Parking Entrance"
+  },
+  {
+    "name": "More",
+    "category": "Supermarket",
+    "floor": "Lower Ground Floor",
+    "location": "South Wing"
+  },
+  {
+    "name": "Apollo Pharmacy",
+    "category": "Pharmacy",
+    "floor": "Lower Ground Floor",
+    "location": "Near Lift"
+  },
+  {
+    "name": "Health & Glow",
+    "category": "Health & Beauty",
+    "floor": "Lower Ground Floor",
+    "location": "Near Escalator"
+  },
+  {
+    "name": "Reliance Trends",
+    "category": "Fashion",
+    "floor": "Ground Floor",
+    "location": "Central Atrium"
+  },
+  {
+    "name": "Pantaloons",
+    "category": "Fashion",
+    "floor": "Ground Floor",
+    "location": "East Wing"
+  },
+  {
+    "name": "Lifestyle",
+    "category": "Department Store",
+    "floor": "Ground Floor",
+    "location": "Main Entrance"
+  },
+  {
+    "name": "Shoppers Stop",
+    "category": "Department Store",
+    "floor": "Ground Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "FabIndia",
+    "category": "Ethnic Wear",
+    "floor": "Ground Floor",
+    "location": "Near Atrium"
+  },
+  {
+    "name": "Biba",
+    "category": "Women's Fashion",
+    "floor": "Ground Floor",
+    "location": "Near Lift"
+  },
+  {
+    "name": "W",
+    "category": "Women's Fashion",
+    "floor": "Ground Floor",
+    "location": "South Wing"
+  },
+  {
+    "name": "Levi's",
+    "category": "Clothing",
+    "floor": "First Floor",
+    "location": "Near Escalator"
+  },
+  {
+    "name": "Pepe Jeans",
+    "category": "Clothing",
+    "floor": "First Floor",
+    "location": "East Wing"
+  },
+  {
+    "name": "Wrangler",
+    "category": "Clothing",
+    "floor": "First Floor",
+    "location": "Near Lift"
+  },
+  {
+    "name": "Van Heusen",
+    "category": "Formal Wear",
+    "floor": "First Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "Louis Philippe",
+    "category": "Formal Wear",
+    "floor": "First Floor",
+    "location": "Central Area"
+  },
+  {
+    "name": "Allen Solly",
+    "category": "Fashion",
+    "floor": "First Floor",
+    "location": "Near Atrium"
+  },
+  {
+    "name": "Nike",
+    "category": "Sportswear",
+    "floor": "Second Floor",
+    "location": "Near Main Entrance"
+  },
+  {
+    "name": "Adidas",
+    "category": "Sportswear",
+    "floor": "Second Floor",
+    "location": "East Wing"
+  },
+  {
+    "name": "Puma",
+    "category": "Sportswear",
+    "floor": "Second Floor",
+    "location": "Near Escalator"
+  },
+  {
+    "name": "Reebok",
+    "category": "Sportswear",
+    "floor": "Second Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "Skechers",
+    "category": "Footwear",
+    "floor": "Second Floor",
+    "location": "Near Lift"
+  },
+  {
+    "name": "Bata",
+    "category": "Footwear",
+    "floor": "Second Floor",
+    "location": "South Wing"
+  },
+  {
+    "name": "Woodland",
+    "category": "Footwear",
+    "floor": "Second Floor",
+    "location": "Near Atrium"
+  },
+  {
+    "name": "Metro Shoes",
+    "category": "Footwear",
+    "floor": "Second Floor",
+    "location": "East Corner"
+  },
+  {
+    "name": "Croma",
+    "category": "Electronics",
+    "floor": "Third Floor",
+    "location": "Tech Zone"
+  },
+  {
+    "name": "Samsung",
+    "category": "Electronics",
+    "floor": "Third Floor",
+    "location": "Central Area"
+  },
+  {
+    "name": "Apple Store",
+    "category": "Electronics",
+    "floor": "Third Floor",
+    "location": "Near Lift"
+  },
+  {
+    "name": "OnePlus",
+    "category": "Mobile Store",
+    "floor": "Third Floor",
+    "location": "East Wing"
+  },
+  {
+    "name": "Mi Store",
+    "category": "Mobile Store",
+    "floor": "Third Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "HP World",
+    "category": "Computers",
+    "floor": "Third Floor",
+    "location": "Near Escalator"
+  },
+  {
+    "name": "Lenovo Exclusive",
+    "category": "Computers",
+    "floor": "Third Floor",
+    "location": "South Wing"
+  },
+  {
+    "name": "McDonald's",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "KFC",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Burger King",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Pizza Hut",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Domino's",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Subway",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Taco Bell",
+    "category": "Food",
+    "floor": "Fourth Floor",
+    "location": "Food Court"
+  },
+  {
+    "name": "Barbeque Nation",
+    "category": "Restaurant",
+    "floor": "Fourth Floor",
+    "location": "North Wing"
+  },
+  {
+    "name": "Starbucks",
+    "category": "Cafe",
+    "floor": "Fourth Floor",
+    "location": "Near Atrium"
+  },
+  {
+    "name": "Cafe Coffee Day",
+    "category": "Cafe",
+    "floor": "Fourth Floor",
+    "location": "Near Escalator"
+  },
+  {
+    "name": "PVR Cinemas",
+    "category": "Entertainment",
+    "floor": "Fifth Floor",
+    "location": "West Wing"
+  },
+  {
+    "name": "INOX",
+    "category": "Entertainment",
+    "floor": "Fifth Floor",
+    "location": "East Wing"
+  },
+  {
+    "name": "Timezone",
+    "category": "Gaming",
+    "floor": "Fifth Floor",
+    "location": "Central Area"
+  },
+  {
+    "name": "Fun City",
+    "category": "Gaming",
+    "floor": "Fifth Floor",
+    "location": "Near Cinema"
+  },
+  {
+    "name": "Hamleys",
+    "category": "Toys",
+    "floor": "Fifth Floor",
+    "location": "North Wing"
+  },
+  {
+    "name": "Archies",
+    "category": "Gifts",
+    "floor": "Fifth Floor",
+    "location": "Near Lift"
+  }
 ]
