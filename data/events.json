@@ -1,152 +1,98 @@
 [
   {
-    "name": "Information Desk",
-    "floor": "Ground Floor",
-    "location": "Main Entrance",
-    "description": "Provides mall information, store locations, and customer assistance."
-  },
-  {
-    "name": "Customer Service Desk",
-    "floor": "Ground Floor",
-    "location": "Central Atrium",
-    "description": "Handles customer queries, complaints, and support."
-  },
-  {
-    "name": "ATM",
-    "floor": "Ground Floor",
-    "location": "Near Main Entrance",
-    "description": "Cash withdrawal and banking services."
-  },
-  {
-    "name": "Multi-Level Parking",
-    "floor": "Basement",
-    "location": "Parking Area",
-    "description": "Parking facility for cars and two-wheelers."
-  },
-  {
-    "name": "Valet Parking",
-    "floor": "Ground Floor",
-    "location": "Main Entrance",
-    "description": "Convenient parking assistance for visitors."
-  },
-  {
-    "name": "Washrooms",
-    "floor": "All Floors",
-    "location": "Near Elevators",
-    "description": "Public restrooms available on every floor."
-  },
-  {
-    "name": "Baby Care Room",
-    "floor": "Second Floor",
-    "location": "Family Zone",
-    "description": "Dedicated room for infant care and feeding."
-  },
-  {
-    "name": "Wheelchair Service",
-    "floor": "Ground Floor",
-    "location": "Customer Service Desk",
-    "description": "Wheelchair assistance for elderly and differently-abled visitors."
-  },
-  {
-    "name": "Elevators",
-    "floor": "All Floors",
-    "location": "Central Mall Area",
-    "description": "Lift access connecting all floors."
-  },
-  {
-    "name": "Escalators",
-    "floor": "All Floors",
-    "location": "Shopping Corridors",
-    "description": "Easy movement between floors."
-  },
-  {
-    "name": "Prayer Room",
-    "floor": "Third Floor",
-    "location": "Quiet Zone",
-    "description": "Dedicated area for prayer and meditation."
-  },
-  {
-    "name": "First Aid Center",
-    "floor": "Ground Floor",
-    "location": "Security Office",
-    "description": "Emergency medical assistance."
-  },
-  {
-    "name": "Emergency Exit",
-    "floor": "All Floors",
-    "location": "Safety Zones",
-    "description": "Emergency evacuation routes."
-  },
-  {
-    "name": "Fire Safety Station",
-    "floor": "All Floors",
-    "location": "Emergency Points",
-    "description": "Fire extinguishers and safety equipment."
-  },
-  {
-    "name": "Lost and Found",
-    "floor": "Ground Floor",
-    "location": "Information Desk",
-    "description": "Recovery of lost items."
-  },
-  {
-    "name": "Free WiFi",
-    "floor": "All Floors",
-    "location": "Mall Wide",
-    "description": "Internet access for visitors."
-  },
-  {
-    "name": "Mobile Charging Station",
-    "floor": "Ground Floor",
-    "location": "Near Information Desk",
-    "description": "Charging points for mobile devices."
-  },
-  {
-    "name": "Food Court",
-    "floor": "Fourth Floor",
-    "location": "Dining Zone",
-    "description": "Large food court with multiple restaurants."
-  },
-  {
-    "name": "AMB Cinemas",
-    "floor": "Fifth Floor",
-    "location": "Entertainment Zone",
-    "description": "Multiplex cinema experience."
-  },
-  {
-    "name": "Gaming Zone",
-    "floor": "Fourth Floor",
-    "location": "Entertainment Area",
-    "description": "Arcade games and family entertainment."
-  },
-  {
-    "name": "Security Help Desk",
-    "floor": "Ground Floor",
-    "location": "Main Lobby",
-    "description": "Security assistance and emergency support."
-  },
-  {
-    "name": "CCTV Surveillance",
-    "floor": "All Floors",
-    "location": "Mall Wide",
-    "description": "24/7 security monitoring."
-  },
-  {
-    "name": "Drinking Water Facility",
-    "floor": "All Floors",
-    "location": "Near Washrooms",
-    "description": "Free purified drinking water."
-  },
-  {
-    "name": "Digital Directory Kiosk",
-    "floor": "Ground Floor",
+    "event_name": "Valentine's Day Celebration",
+    "date": "14 February",
     "location": "Main Atrium",
-    "description": "Interactive mall navigation system."
+    "description": "Special Valentine's Day celebration with entertainment and activities."
   },
   {
-    "name": "Taxi Pickup Point",
-    "floor": "Ground Floor",
-    "location": "Mall Exit",
-    "description": "Pickup point for cabs and taxis."
+    "event_name": "Christmas Day Celebration",
+    "date": "25 December",
+    "location": "Central Atrium",
+    "description": "Christmas decorations, performances and festive activities."
+  },
+  {
+    "event_name": "Mohammed Siraj Meet & Greet",
+    "date": "10 December",
+    "location": "Event Stage",
+    "description": "Special appearance and interaction with cricketer Mohammed Siraj."
+  },
+  {
+    "event_name": "Indian Navy Band Performance",
+    "date": "8 December",
+    "location": "Open Event Area",
+    "description": "Live musical performance by the Indian Navy Band."
+  },
+  {
+    "event_name": "Spykar Power Grip Challenge",
+    "date": "29 November",
+    "location": "Fashion Zone",
+    "description": "Brand-sponsored competition and customer engagement event."
+  },
+  {
+    "event_name": "Children's Day Celebration",
+    "date": "14 November",
+    "location": "Kids Zone",
+    "description": "Games, entertainment and activities for children."
+  },
+  {
+    "event_name": "Halloween Celebration",
+    "date": "1 November",
+    "location": "Main Atrium",
+    "description": "Halloween-themed decorations, costumes and activities."
+  },
+  {
+    "event_name": "Diwali Celebration",
+    "date": "20 October",
+    "location": "Mall Atrium",
+    "description": "Festival celebrations, lighting decorations and performances."
+  },
+  {
+    "event_name": "Pulse Polio Awareness Program",
+    "date": "12 October",
+    "location": "Community Area",
+    "description": "Health awareness and public service campaign."
+  },
+  {
+    "event_name": "Bathukamma Festival",
+    "date": "30 September",
+    "location": "Open Event Area",
+    "description": "Traditional Telangana cultural celebration."
+  },
+  {
+    "event_name": "Beats of Dandiya",
+    "date": "28 September",
+    "location": "Event Arena",
+    "description": "Navratri Dandiya dance and music festival."
+  },
+  {
+    "event_name": "Sweet Celebrations Festival",
+    "date": "1 September",
+    "location": "Food Court",
+    "description": "Festival-themed sweets and food celebrations."
+  },
+  {
+    "event_name": "Independence Day Celebration",
+    "date": "15 August",
+    "location": "Main Atrium",
+    "description": "Patriotic performances and cultural programs."
+  },
+  {
+    "event_name": "Friendship Day Weekend Celebration",
+    "date": "2-3 August",
+    "location": "Mall Atrium",
+    "description": "Friendship-themed contests and entertainment."
+  },
+  {
+    "event_name": "Balagaanagandharvulu Season 5",
+    "date": "28 June",
+    "location": "Open Auditorium",
+    "description": "Music and entertainment event by Magic FM 106.4."
+  },
+  {
+    "event_name": "Father's Day Celebration",
+    "date": "15 June",
+    "location": "Central Atrium",
+    "description": "Family-focused activities and contests."
   }
 ]
