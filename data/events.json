@@ -1,6 +1,98 @@
 [
   {
-    "event": "Music Night",
-    "date": "Sunday"
+    "event_name": "Valentine's Day Celebration",
+    "date": "14 February",
+    "location": "Main Atrium",
+    "description": "Special Valentine's Day celebration with entertainment and activities."
+  },
+  {
+    "event_name": "Christmas Day Celebration",
+    "date": "25 December",
+    "location": "Central Atrium",
+    "description": "Christmas decorations, performances and festive activities."
+  },
+  {
+    "event_name": "Mohammed Siraj Meet & Greet",
+    "date": "10 December",
+    "location": "Event Stage",
+    "description": "Special appearance and interaction with cricketer Mohammed Siraj."
+  },
+  {
+    "event_name": "Indian Navy Band Performance",
+    "date": "8 December",
+    "location": "Open Event Area",
+    "description": "Live musical performance by the Indian Navy Band."
+  },
+  {
+    "event_name": "Spykar Power Grip Challenge",
+    "date": "29 November",
+    "location": "Fashion Zone",
+    "description": "Brand-sponsored competition and customer engagement event."
+  },
+  {
+    "event_name": "Children's Day Celebration",
+    "date": "14 November",
+    "location": "Kids Zone",
+    "description": "Games, entertainment and activities for children."
+  },
+  {
+    "event_name": "Halloween Celebration",
+    "date": "1 November",
+    "location": "Main Atrium",
+    "description": "Halloween-themed decorations, costumes and activities."
+  },
+  {
+    "event_name": "Diwali Celebration",
+    "date": "20 October",
+    "location": "Mall Atrium",
+    "description": "Festival celebrations, lighting decorations and performances."
+  },
+  {
+    "event_name": "Pulse Polio Awareness Program",
+    "date": "12 October",
+    "location": "Community Area",
+    "description": "Health awareness and public service campaign."
+  },
+  {
+    "event_name": "Bathukamma Festival",
+    "date": "30 September",
+    "location": "Open Event Area",
+    "description": "Traditional Telangana cultural celebration."
+  },
+  {
+    "event_name": "Beats of Dandiya",
+    "date": "28 September",
+    "location": "Event Arena",
+    "description": "Navratri Dandiya dance and music festival."
+  },
+  {
+    "event_name": "Sweet Celebrations Festival",
+    "date": "1 September",
+    "location": "Food Court",
+    "description": "Festival-themed sweets and food celebrations."
+  },
+  {
+    "event_name": "Independence Day Celebration",
+    "date": "15 August",
+    "location": "Main Atrium",
+    "description": "Patriotic performances and cultural programs."
+  },
+  {
+    "event_name": "Friendship Day Weekend Celebration",
+    "date": "2-3 August",
+    "location": "Mall Atrium",
+    "description": "Friendship-themed contests and entertainment."
+  },
+  {
+    "event_name": "Balagaanagandharvulu Season 5",
+    "date": "28 June",
+    "location": "Open Auditorium",
+    "description": "Music and entertainment event by Magic FM 106.4."
+  },
+  {
+    "event_name": "Father's Day Celebration",
+    "date": "15 June",
+    "location": "Central Atrium",
+    "description": "Family-focused activities and contests."
   }
 ]

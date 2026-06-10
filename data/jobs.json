@@ -1,10 +1,165 @@
 [
   {
-    "company": "Nike",
-    "role": "Sales Executive"
+    "job_id": "JOB001",
+    "job_title": "Sales Associate",
+    "department": "Retail Stores",
+    "stores": ["Lifestyle", "Pantaloons", "Max", "Trends"],
+    "qualification": "Intermediate or Degree",
+    "skills": [
+      "Communication",
+      "Customer Service",
+      "Product Knowledge"
+    ],
+    "job_type": "Full Time",
+    "description": "Assist customers, explain products, maintain displays and achieve sales targets."
   },
   {
-    "company": "PVR",
-    "role": "Cashier"
+    "job_id": "JOB002",
+    "job_title": "Cashier",
+    "department": "Retail Stores",
+    "stores": ["Lifestyle", "SPAR", "Pantaloons"],
+    "qualification": "Intermediate",
+    "skills": [
+      "Billing",
+      "Cash Handling",
+      "Computer Skills"
+    ],
+    "job_type": "Full Time",
+    "description": "Handle billing, payments, receipts and customer transactions."
+  },
+  {
+    "job_id": "JOB003",
+    "job_title": "Store Manager",
+    "department": "Retail Management",
+    "stores": ["Lifestyle", "Max", "Trends"],
+    "qualification": "Degree / MBA",
+    "skills": [
+      "Leadership",
+      "Inventory Management",
+      "Team Management"
+    ],
+    "job_type": "Full Time",
+    "description": "Manage store operations, staff and sales performance."
+  },
+  {
+    "job_id": "JOB004",
+    "job_title": "Food Court Executive",
+    "department": "Food Court",
+    "stores": ["KFC", "Burger King", "Pizza Hut", "Subway"],
+    "qualification": "Any Qualification",
+    "skills": [
+      "Customer Service",
+      "Food Handling",
+      "Communication"
+    ],
+    "job_type": "Full Time",
+    "description": "Assist customers and support restaurant operations."
+  },
+  {
+    "job_id": "JOB005",
+    "job_title": "Chef",
+    "department": "Restaurants",
+    "stores": ["Punjab Grill", "Flechazo", "Krishnapatnam"],
+    "qualification": "Hotel Management",
+    "skills": [
+      "Cooking",
+      "Kitchen Management",
+      "Food Safety"
+    ],
+    "job_type": "Full Time",
+    "description": "Prepare food, manage kitchen operations and maintain quality standards."
+  },
+  {
+    "job_id": "JOB006",
+    "job_title": "Waiter",
+    "department": "Restaurants",
+    "stores": ["Punjab Grill", "Air Live", "Boiler Room"],
+    "qualification": "Any Qualification",
+    "skills": [
+      "Customer Service",
+      "Serving",
+      "Communication"
+    ],
+    "job_type": "Full Time",
+    "description": "Take orders, serve food and assist guests."
+  },
+  {
+    "job_id": "JOB007",
+    "job_title": "Security Guard",
+    "department": "Security",
+    "stores": ["Entire Mall"],
+    "qualification": "10th Pass",
+    "skills": [
+      "Security Monitoring",
+      "Emergency Response"
+    ],
+    "job_type": "Full Time",
+    "description": "Maintain safety and security across the mall."
+  },
+  {
+    "job_id": "JOB008",
+    "job_title": "Housekeeping Staff",
+    "department": "Facilities",
+    "stores": ["Entire Mall"],
+    "qualification": "Any Qualification",
+    "skills": [
+      "Cleaning",
+      "Maintenance"
+    ],
+    "job_type": "Full Time",
+    "description": "Maintain cleanliness and hygiene throughout the mall."
+  },
+  {
+    "job_id": "JOB009",
+    "job_title": "Customer Service Executive",
+    "department": "Mall Administration",
+    "stores": ["Information Desk"],
+    "qualification": "Degree",
+    "skills": [
+      "Communication",
+      "Problem Solving",
+      "Customer Support"
+    ],
+    "job_type": "Full Time",
+    "description": "Help visitors, provide directions and resolve customer queries."
+  },
+  {
+    "job_id": "JOB010",
+    "job_title": "Cinema Executive",
+    "department": "AMB Cinemas",
+    "stores": ["AMB Cinemas"],
+    "qualification": "Intermediate",
+    "skills": [
+      "Ticket Booking",
+      "Customer Service"
+    ],
+    "job_type": "Full Time",
+    "description": "Handle ticket sales and assist cinema visitors."
+  },
+  {
+    "job_id": "JOB011",
+    "job_title": "Gaming Zone Attendant",
+    "department": "Entertainment",
+    "stores": ["Gaming Zone"],
+    "qualification": "Any Qualification",
+    "skills": [
+      "Customer Assistance",
+      "Game Operations"
+    ],
+    "job_type": "Full Time",
+    "description": "Assist visitors and maintain gaming equipment."
+  },
+  {
+    "job_id": "JOB012",
+    "job_title": "Maintenance Technician",
+    "department": "Mall Operations",
+    "stores": ["Entire Mall"],
+    "qualification": "ITI / Diploma",
+    "skills": [
+      "Electrical Maintenance",
+      "Mechanical Repair"
+    ],
+    "job_type": "Full Time",
+    "description": "Maintain mall infrastructure and equipment."
   }
 ]
