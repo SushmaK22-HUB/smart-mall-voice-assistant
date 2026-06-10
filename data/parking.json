@@ -59,7 +59,8 @@
     "location": "Emergency Access Zone",
     "description": "Reserved parking for ambulances and emergency services."
   },
-  {
+  
+{
     "parking_name": "Parking Help Desk",
     "levels": ["Ground Floor"],
     "vehicle_type": "All Vehicles",
