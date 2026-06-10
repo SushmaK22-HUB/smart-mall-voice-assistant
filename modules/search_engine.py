@@ -32,16 +32,17 @@ with open("data/food.json", "r") as file:
 def search_store(store_name):
 
     for store in stores:
+
         if store_name.lower() in store["name"].lower():
 
             return (
-                f"{store['name']} is on the "
-                f"{store['floor']}, near "
-                f"{store['location']}."
+                f"🏬 Store: {store['name']}\n\n"
+                f"📂 Category: {store['category']}\n"
+                f"📍 Floor: {store['floor']}\n"
+                f"📌 Location: {store['location']}"
             )
 
     return None
-
 
 # ---------------- FACILITY SEARCH ---------------- #
 
@@ -180,3 +181,79 @@ def get_all_food():
         result += f"{item['name']} ({item['floor']})\n"
 
     return result
+
+# ---------------- FLOOR-WISE STORES ---------------- #
+
+def get_stores_by_floor(floor_name):
+
+    result = f"Stores on {floor_name}:\n"
+
+    found = False
+
+    for store in stores:
+
+        if floor_name.lower() in store["floor"].lower():
+
+            result += f"{store['name']}\n"
+            found = True
+
+    if found:
+        return result
+
+    return f"No stores found on {floor_name}."
+
+# ---------------- FOOD BY FLOOR ---------------- #
+
+def get_food_by_floor(floor_name):
+
+    result = f"Food Outlets on {floor_name}:\n"
+
+    found = False
+
+    for item in food:
+
+        if floor_name.lower() in item["floor"].lower():
+
+            result += f"{item['name']}\n"
+            found = True
+
+    if found:
+        return result
+
+    return f"No food outlets found on {floor_name}."
+
+# ---------------- STORE CATEGORY SEARCH ---------------- #
+
+def get_stores_by_category(category_name):
+
+    result = f"{category_name.title()} Stores:\n"
+
+    found = False
+
+    for store in stores:
+
+        if category_name.lower() in store["category"].lower():
+
+            result += f"{store['name']}\n"
+            found = True
+
+    if found:
+        return result
+
+    return f"No stores found in category: {category_name}"
+
+# ---------------- STORE NAVIGATION ---------------- #
+
+def get_navigation(store_name):
+
+    for store in stores:
+
+        if store_name.lower() in store["name"].lower():
+
+            return (
+                f"To reach {store['name']}, "
+                f"go to {store['floor']} "
+                f"near {store['location']}."
+            )
+
+    return None

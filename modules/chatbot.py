@@ -11,12 +11,16 @@ from modules.search_engine import (
     get_emergency,
     get_all_stores,
     get_all_facilities,
-    get_all_food
+    get_all_food,
+    get_stores_by_floor,
+    get_food_by_floor,
+    get_stores_by_category,
+    get_navigation
 )
 
 # ---------------- GEMINI CONFIG ---------------- #
 
-GEMINI_API_KEY = "AIzaSyDC12VxKPYozlG8jKKrXaM1i82ivhIt8z4"
+GEMINI_API_KEY = "AIzaSyDUsXj1hbV8CQmKPsXsVadex7JwH77FE5c"
 
 genai.configure(api_key=GEMINI_API_KEY)
 
@@ -27,6 +31,37 @@ model = genai.GenerativeModel("gemini-2.5-flash")
 def get_response(user_input):
 
     user_input_lower = user_input.lower()
+
+    # ---------- FOOD FLOOR SEARCH ---------- #
+
+    if "food on third floor" in user_input_lower:
+        return get_food_by_floor("Third Floor")
+
+    if "restaurants on third floor" in user_input_lower:
+        return get_food_by_floor("Third Floor")
+
+    if "food court" in user_input_lower:
+        return get_food_by_floor("Third Floor")
+
+    # ---------- FLOOR SEARCH ---------- #
+
+    if "stores on first floor" in user_input_lower:
+        return get_stores_by_floor("First Floor")
+
+    if "stores in first floor" in user_input_lower:
+        return get_stores_by_floor("First Floor")
+
+    if "stores on second floor" in user_input_lower:
+        return get_stores_by_floor("Second Floor")
+
+    if "stores in second floor" in user_input_lower:
+        return get_stores_by_floor("Second Floor")
+
+    if "stores on third floor" in user_input_lower:
+        return get_stores_by_floor("Third Floor")
+
+    if "stores in third floor" in user_input_lower:
+        return get_stores_by_floor("Third Floor")
 
     # ---------- ALL STORES ---------- #
 
@@ -57,6 +92,34 @@ def get_response(user_input):
 
     if "all events" in user_input_lower:
         return get_events()
+    
+    # ---------- CATEGORY SEARCH ---------- #
+
+    if "fashion stores" in user_input_lower:
+        return get_stores_by_category("Fashion")
+
+    if "sportswear stores" in user_input_lower:
+        return get_stores_by_category("Sportswear")
+    
+    # ---------- NAVIGATION ---------- #
+
+    if "reach nike" in user_input_lower:
+        return get_navigation("Nike")
+
+    if "route to nike" in user_input_lower:
+        return get_navigation("Nike")
+
+    if "navigate to nike" in user_input_lower:
+        return get_navigation("Nike")
+
+    if "reach zara" in user_input_lower:
+        return get_navigation("Zara")
+
+    if "route to zara" in user_input_lower:
+        return get_navigation("Zara")
+
+    if "navigate to zara" in user_input_lower:
+        return get_navigation("Zara")
 
     # ---------- STORE SEARCH ---------- #
 
@@ -107,6 +170,7 @@ def get_response(user_input):
         or "fire" in user_input_lower
     ):
         return get_emergency()
+    
 
     # ---------- GEMINI FALLBACK ---------- #
 

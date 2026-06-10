@@ -12,10 +12,19 @@ from modules.search_engine import (
     get_emergency
 )
 
+if "selected_map" not in st.session_state:
+    st.session_state.selected_map = None
+
+if "search_count" not in st.session_state:
+    st.session_state.search_count = 0    
+
 # ---------------- CHAT HISTORY ---------------- #
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
+
+if "search_count" not in st.session_state:
+    st.session_state.search_count = 0    
 
 # ---------------- PATHS ---------------- #
 
@@ -23,6 +32,11 @@ BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 LOGO_PATH = os.path.join(BASE_DIR, "assets", "mall_logo.jpg")
 MAP_PATH = os.path.join(BASE_DIR, "assets", "mall_map.jpg")
+
+GROUND_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "ground_floor.jpg")
+FIRST_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "first_floor.jpg")
+SECOND_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "second_floor.jpg")
+THIRD_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "third_floor.jpg")
 
 # ---------------- PAGE CONFIG ---------------- #
 
@@ -117,17 +131,44 @@ with col3:
     if st.button("🚨 Emergency"):
         st.info("Try asking: Emergency Exit")
 
-# ---------------- MALL MAP ---------------- #
+# ---------------- FLOOR MAPS ---------------- #
 
-st.subheader("🗺️ Mall Map")
+st.subheader("🗺️ Floor Maps")
 
-if st.button("Show Mall Map"):
+col1, col2 = st.columns(2)
 
-    st.image(
-        MAP_PATH,
-        caption="Sarath City Capital Mall Map",
-        use_container_width=True
-    )
+with col1:
+
+    if st.button("Ground Floor"):
+        st.image(
+            GROUND_FLOOR_PATH,
+            caption="Ground Floor",
+            use_container_width=True
+        )
+
+    if st.button("First Floor"):
+        st.image(
+            FIRST_FLOOR_PATH,
+            caption="First Floor",
+            use_container_width=True
+        )
+
+with col2:
+
+    if st.button("Second Floor"):
+        st.image(
+            SECOND_FLOOR_PATH,
+            caption="Second Floor",
+            use_container_width=True
+        )
+
+    if st.button("Third Floor"):
+        st.image(
+            THIRD_FLOOR_PATH,
+            caption="Third Floor",
+            use_container_width=True
+        )
+
 
 # ---------------- VOICE ASSISTANT ---------------- #
 
@@ -143,6 +184,24 @@ if st.button("🎤 Speak Now"):
 
     response = get_response(user_text)
 
+    st.session_state.selected_map = None
+
+    # Auto floor map
+    if "First Floor" in response:
+        st.session_state.selected_map = FIRST_FLOOR_PATH
+
+    elif "Second Floor" in response:
+        st.session_state.selected_map = SECOND_FLOOR_PATH
+
+    elif "Third Floor" in response:
+        st.session_state.selected_map = THIRD_FLOOR_PATH
+
+    elif "Ground Floor" in response:
+        st.session_state.selected_map = GROUND_FLOOR_PATH
+
+    # Analytics
+    st.session_state.search_count += 1
+
     # Save conversation
     st.session_state.chat_history.append(
         ("You", user_text)
@@ -157,11 +216,25 @@ if st.button("🎤 Speak Now"):
 # ---------------- TEXT SEARCH ---------------- #
 
 st.subheader("⌨️ Type Your Question")
+st.subheader("💡 Quick Suggestions")
 
-st.caption(
-    "Examples: Where is Nike? | KFC | Parking | "
-    "All Stores | Jobs | Offers | Events | Emergency"
-)
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    if st.button("Nike"):
+        st.success(get_response("Nike"))
+
+with col2:
+    if st.button("KFC"):
+        st.success(get_response("KFC"))
+
+with col3:
+    if st.button("Parking"):
+        st.success(get_response("Parking"))
+
+with col4:
+    if st.button("Offers"):
+        st.success(get_response("Offers"))
 
 user_query = st.text_input(
     "Ask about stores, food, parking, jobs, offers..."
@@ -173,6 +246,24 @@ if st.button("Search"):
 
         response = get_response(user_query)
 
+        st.session_state.selected_map = None
+
+        # Auto floor map
+        if "First Floor" in response:
+            st.session_state.selected_map = FIRST_FLOOR_PATH
+
+        elif "Second Floor" in response:
+            st.session_state.selected_map = SECOND_FLOOR_PATH
+
+        elif "Third Floor" in response:
+            st.session_state.selected_map = THIRD_FLOOR_PATH
+
+        elif "Ground Floor" in response:
+            st.session_state.selected_map = GROUND_FLOOR_PATH
+
+        # Analytics
+        st.session_state.search_count += 1
+
         # Save conversation
         st.session_state.chat_history.append(
             ("You", user_query)
@@ -182,14 +273,41 @@ if st.button("Search"):
             ("Assistant", response)
         )
 
+        st.success(response)
+
+
+# ---------------- AUTO FLOOR MAP ---------------- #
+
+if st.session_state.selected_map:
+
+    st.subheader("📍 Recommended Floor Map")
+
+    st.image(
+        st.session_state.selected_map,
+        use_container_width=True
+    )
 # ---------------- CHAT HISTORY ---------------- #
 
 st.subheader("💬 Conversation")
+
 if st.button("🗑 Clear Chat"):
-
     st.session_state.chat_history = []
-
     st.rerun()
+
+# Create downloadable text
+chat_text = ""
+
+for speaker, message in st.session_state.chat_history:
+    chat_text += f"{speaker}: {message}\n"
+
+st.download_button(
+    label="📥 Download Chat History",
+    data=chat_text,
+    file_name="mall_chat_history.txt",
+    mime="text/plain"
+)
+
+# Display conversation
 
 if len(st.session_state.chat_history) == 0:
 
@@ -206,6 +324,15 @@ else:
         else:
 
             st.success(f"🤖 {speaker}: {message}")
+
+# ---------------- SEARCH ANALYTICS ---------------- #
+
+st.subheader("📈 Search Analytics")
+
+st.metric(
+    label="Total Searches",
+    value=st.session_state.search_count
+)            
 
 # ---------------- FOOTER ---------------- #
 
