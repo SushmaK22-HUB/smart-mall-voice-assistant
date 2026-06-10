@@ -135,14 +135,16 @@ def get_emergency():
 
 def search_food(food_name):
 
-    for item in food:
-        if food_name.lower() in item["name"].lower():
+    for category in food:
 
-            return (
-                f"{item['name']} is on "
-                f"{item['floor']} near "
-                f"{item['location']}."
-            )
+        for restaurant in category["restaurants"]:
+
+            if food_name.lower() in restaurant["name"].lower():
+
+                return (
+                    f"{restaurant['name']} is on "
+                    f"{restaurant['floor']}."
+                )
 
     return None
 
@@ -177,8 +179,14 @@ def get_all_food():
 
     result = "Food Outlets:\n"
 
-    for item in food:
-        result += f"{item['name']} ({item['floor']})\n"
+    for category in food:
+
+        for restaurant in category["restaurants"]:
+
+            result += (
+                f"{restaurant['name']} "
+                f"({restaurant['floor']})\n"
+            )
 
     return result
 
