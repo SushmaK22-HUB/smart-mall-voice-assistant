@@ -95,11 +95,32 @@ def get_response(user_input):
     
     # ---------- CATEGORY SEARCH ---------- #
 
-    if "fashion stores" in user_input_lower:
+    if "fashion" in user_input_lower:
         return get_stores_by_category("Fashion")
 
-    if "sportswear stores" in user_input_lower:
+    if "sportswear" in user_input_lower:
         return get_stores_by_category("Sportswear")
+    
+    if "electronics" in user_input_lower:
+        return get_stores_by_category("Electronics")
+
+    if "food" in user_input_lower:
+        return get_stores_by_category("Food")
+
+    if "footwear" in user_input_lower:
+        return get_stores_by_category("Footwear")
+
+    if "gaming" in user_input_lower:
+        return get_stores_by_category("Gaming")
+
+    if "entertainment" in user_input_lower:
+        return get_stores_by_category("Entertainment")
+
+    if "cafe" in user_input_lower:
+        return get_stores_by_category("Cafe")
+
+    if "restaurant" in user_input_lower:
+        return get_stores_by_category("Restaurant")
     
     # ---------- NAVIGATION ---------- #
 
