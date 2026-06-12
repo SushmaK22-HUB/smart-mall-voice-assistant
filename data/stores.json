@@ -293,4 +293,95 @@
     "floor": "Fifth Floor",
     "location": "Near Lift"
   }
+  ,
+{
+  "name": "Zudio",
+  "category": "Fashion",
+  "floor": "First Floor",
+  "location": "East Wing"
+},
+{
+  "name": "H&M",
+  "category": "Fashion",
+  "floor": "First Floor",
+  "location": "Central Area"
+},
+{
+  "name": "Max Fashion",
+  "category": "Fashion",
+  "floor": "Ground Floor",
+  "location": "West Wing"
+},
+{
+  "name": "Westside",
+  "category": "Fashion",
+  "floor": "Ground Floor",
+  "location": "Near Atrium"
+},
+{
+  "name": "US Polo Assn",
+  "category": "Clothing",
+  "floor": "First Floor",
+  "location": "South Wing"
+},
+{
+  "name": "Jockey",
+  "category": "Clothing",
+  "floor": "First Floor",
+  "location": "Near Escalator"
+},
+{
+  "name": "Titan",
+  "category": "Watches",
+  "floor": "Second Floor",
+  "location": "East Wing"
+},
+{
+  "name": "Fastrack",
+  "category": "Accessories",
+  "floor": "Second Floor",
+  "location": "Near Lift"
+},
+{
+  "name": "Oppo",
+  "category": "Mobile Store",
+  "floor": "Third Floor",
+  "location": "Central Area"
+},
+{
+  "name": "Vivo",
+  "category": "Mobile Store",
+  "floor": "Third Floor",
+  "location": "West Wing"
+},
+{
+  "name": "Chai Point",
+  "category": "Cafe",
+  "floor": "Fourth Floor",
+  "location": "Food Court"
+},
+{
+  "name": "Wow Momo",
+  "category": "Food",
+  "floor": "Fourth Floor",
+  "location": "Food Court"
+},
+{
+  "name": "Cream Stone",
+  "category": "Desserts",
+  "floor": "Fourth Floor",
+  "location": "Food Court"
+},
+{
+  "name": "Miniso",
+  "category": "Lifestyle",
+  "floor": "Ground Floor",
+  "location": "Central Atrium"
+},
+{
+  "name": "Crossword",
+  "category": "Books",
+  "floor": "Fifth Floor",
+  "location": "Near Cinema"
+}
 ]
