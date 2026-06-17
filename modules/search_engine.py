@@ -153,8 +153,8 @@ def get_all_stores():
 
     result = "Available Stores:\n"
 
-   for store in stores:
-    result += f"{store.get('name', 'Unknown Store')} ({store.get('floor', 'Unknown Floor')})\n"
+    for store in stores:
+        result += f"{store.get('name', 'Unknown Store')} ({store.get('floor', 'Unknown Floor')})\n"
 
     return result
 
