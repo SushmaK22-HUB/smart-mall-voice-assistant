@@ -75,12 +75,12 @@ def get_parking_info():
 
 def get_offers():
 
-    result = "Current Offers:\n"
+    result = "Current Offers:\n\n"
 
     for offer in offers:
         result += (
-            f"{offer['store']} - "
-            f"{offer['offer']}\n"
+            f"{offer['store_name']} - "
+            f"{offer['offer_title']}\n"
         )
 
     return result
@@ -90,12 +90,12 @@ def get_offers():
 
 def get_jobs():
 
-    result = "Available Jobs:\n"
+    result = "Available Jobs:\n\n"
 
     for job in jobs:
         result += (
-            f"{job['company']} - "
-            f"{job['role']}\n"
+            f"{job['job_title']} "
+            f"({job['department']})\n"
         )
 
     return result
@@ -105,11 +105,11 @@ def get_jobs():
 
 def get_events():
 
-    result = "Upcoming Events:\n"
+    result = "Upcoming Events:\n\n"
 
     for event in events:
         result += (
-            f"{event['event']} - "
+            f"{event['event_name']} - "
             f"{event['date']}\n"
         )
 
@@ -120,11 +120,11 @@ def get_events():
 
 def get_emergency():
 
-    result = "Emergency Information:\n"
+    result = "Emergency Information:\n\n"
 
     for item in emergency:
         result += (
-            f"{item['type']} - "
+            f"{item['service_name']} - "
             f"{item['location']}\n"
         )
 
