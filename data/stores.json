@@ -1,115 +1,122 @@
 [
-  {
-    "main_store": "Departmental Stores",
-    "floor": "Second Floor",
-    "sub_stores": [
-      "Lifestyle",
-      "Shoppers Stop",
-      "Marks and Spencer",
-      "Intune",
-      "GAP",
-      "Max",
-      "Westside"
-    ]
-  },
-
-  {
-    "main_store": "Reliance Trends",
-    "floor": "Second Floor",
-    "sub_stores": [
-      "Netplay",
-      "DNMX",
-      "Performax",
-      "Rio",
-      "Fusion",
-      "Teamspirit"
-    ]
-  },
-
-  {
-    "main_store": "The Beer House",
-    "floor": "Fifth Floor",
-    "sub_stores": [
-      "Craft Beer",
-      "Mocktails",
-      "Continental Food",
-      "Bar Snacks",
-      "Live Music Area"
-    ]
-  },
-
-  {
-    "main_store": "Pantaloons",
-    "floor": "First Floor",
-    "sub_stores": [
-      "Ajile",
-      "People",
-      "Honey",
-      "SF Jeans",
-      "Byford",
-      "Annabelle"
-    ]
-  },
-
-  {
-    "main_store": "H&M",
-    "floor": "Second Floor",
-    "sub_stores": [
-      "H&M Men",
-      "H&M Women",
-      "H&M Kids",
-      "H&M Accessories",
-      "H&M Beauty"
-    ]
-  },
-
-  {
-    "main_store": "Lifestyle",
-    "floor": "Second Floor",
-    "sub_stores": [
-      "Code",
-      "Melange",
-      "GINGER",
-      "FORCA",
-      "Kappa",
-      "BOSSINI"
-    ]
-  },
-
-  {
-    "main_store": "Liquor",
-    "floor": "Lower Ground Floor",
-    "sub_stores": [
-      "Premium Wines",
-      "Imported Liquor",
-      "Beer Section",
-      "Whisky Collection",
-      "Vodka Collection"
-    ]
-  },
-
-  {
-    "main_store": "Jewellery",
-    "floor": "Ground Floor",
-    "sub_stores": [
-      "Tanishq",
-      "Malabar Gold",
-      "Kalyan Jewellers",
-      "Mia",
-      "Diamond Collection",
-      "Gold Collection"
-    ]
-  },
-
-  {
-    "main_store": "GROWL",
-    "floor": "Fourth Floor",
-    "sub_stores": [
-      "Gaming Zone",
-      "VR Games",
-      "Bowling",
-      "Arcade Games",
-      "Kids Play Area"
-    ]
-  }
+{
+"name": "Lifestyle",
+"category": "Fashion",
+"floor": "Second Floor",
+"location": "Central Atrium"
+},
+{
+"name": "Reliance Trends",
+"category": "Fashion",
+"floor": "First Floor",
+"location": "Fashion Zone"
+},
+{
+"name": "Pantaloons",
+"category": "Fashion",
+"floor": "First Floor",
+"location": "Fashion Zone"
+},
+{
+"name": "Max",
+"category": "Fashion",
+"floor": "First Floor",
+"location": "Fashion Zone"
+},
+{
+"name": "H&M",
+"category": "Fashion",
+"floor": "Ground Floor",
+"location": "Main Wing"
+},
+{
+"name": "GAP",
+"category": "Fashion",
+"floor": "Ground Floor",
+"location": "Main Wing"
+},
+{
+"name": "Nike",
+"category": "Sports",
+"floor": "Ground Floor",
+"location": "Sports Zone"
+},
+{
+"name": "Adidas",
+"category": "Sports",
+"floor": "Ground Floor",
+"location": "Sports Zone"
+},
+{
+"name": "Puma",
+"category": "Sports",
+"floor": "Ground Floor",
+"location": "Sports Zone"
+},
+{
+"name": "Skechers",
+"category": "Footwear",
+"floor": "Ground Floor",
+"location": "Footwear Zone"
+},
+{
+"name": "Levi's",
+"category": "Fashion",
+"floor": "Ground Floor",
+"location": "Fashion Street"
+},
+{
+"name": "US Polo Assn",
+"category": "Fashion",
+"floor": "Ground Floor",
+"location": "Fashion Street"
+},
+{
+"name": "SPAR Hypermarket",
+"category": "Hypermarket",
+"floor": "Lower Ground Floor",
+"location": "Anchor Store"
+},
+{
+"name": "Croma",
+"category": "Electronics",
+"floor": "Third Floor",
+"location": "Electronics Zone"
+},
+{
+"name": "Reliance Digital",
+"category": "Electronics",
+"floor": "Third Floor",
+"location": "Electronics Zone"
+},
+{
+"name": "Nykaa",
+"category": "Beauty",
+"floor": "Ground Floor",
+"location": "Beauty Zone"
+},
+{
+"name": "The Body Shop",
+"category": "Beauty",
+"floor": "Ground Floor",
+"location": "Beauty Zone"
+},
+{
+"name": "Tanishq",
+"category": "Jewellery",
+"floor": "Ground Floor",
+"location": "Luxury Zone"
+},
+{
+"name": "Malabar Gold",
+"category": "Jewellery",
+"floor": "Ground Floor",
+"location": "Luxury Zone"
+},
+{
+"name": "AMB Cinemas",
+"category": "Entertainment",
+"floor": "Fifth Floor",
+"location": "Entertainment Zone"
+}
 ]
