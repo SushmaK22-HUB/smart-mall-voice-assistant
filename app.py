@@ -75,7 +75,47 @@ st.subheader("📊 Statistics")
 st.write("Stores:", len(get_all_stores().splitlines()) - 1)
 
 st.write("Food Outlets:", len(get_all_food().splitlines()) - 1)    
+# ---------------- DIRECTORY PAGE ---------------- #
 
+st.subheader("📂 Store Directory")
+
+store_data = {
+    "Apple Store": {
+        "floor": "Ground Floor",
+        "location": "Electronics Zone"
+    },
+    "Nike": {
+        "floor": "First Floor",
+        "location": "Sports Zone"
+    },
+    "Zara": {
+        "floor": "Second Floor",
+        "location": "Fashion Zone"
+    },
+    "Starbucks": {
+        "floor": "Ground Floor",
+        "location": "Food Court"
+    }
+}
+
+selected_store = st.selectbox(
+    "🔍 Search Store",
+    list(store_data.keys())
+)
+
+if selected_store:
+    st.success(f"Store: {selected_store}")
+    st.write(f"Floor: {store_data[selected_store]['floor']}")
+    st.write(f"Location: {store_data[selected_store]['location']}")
+
+# ---------------- NAVIGATION PAGE ---------------- #
+
+st.subheader("🗺 Navigation Page")
+
+if selected_store:
+    st.info(f"Navigate to {selected_store}")
+    st.write(f"Floor: {store_data[selected_store]['floor']}")
+    st.write(f"Location: {store_data[selected_store]['location']}")
 # ---------------- QUICK SERVICES ---------------- #
 
 st.subheader("Quick Services")
