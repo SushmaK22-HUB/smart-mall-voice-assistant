@@ -20,7 +20,7 @@ from modules.search_engine import (
 
 # ---------------- GEMINI CONFIG ---------------- #
 
-GEMINI_API_KEY = "AIzaSyDUsXj1hbV8CQmKPsXsVadex7JwH77FE5c"
+GEMINI_API_KEY = ""
 
 genai.configure(api_key=GEMINI_API_KEY)
 
