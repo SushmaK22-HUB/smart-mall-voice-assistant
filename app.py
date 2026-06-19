@@ -163,26 +163,105 @@ div[data-testid="metric-container"]:hover {
 
 # ---------------- HEADER ---------------- #
 
-st.image(
-    MALL_EXTERIOR,
-    width=800
-)
-
 st.markdown("""
-<div class="hero">
+<div style="
+background: rgba(20,20,20,0.75);
+padding:30px;
+border-radius:20px;
+border:1px solid rgba(255,255,255,0.1);
+text-align:center;
+">
 
-<h1>🛍️ SMART MALL VOICE ASSISTANT</h1>
+<h1 style="color:#ff7b00;">
+🎙️ Smart Mall Voice Assistant
+</h1>
 
-<p>
-✨ Find Stores • 🍔 Discover Food • 🎁 Explore Offers • 🗺️ Navigate Floors
-</p>
-
-<h3>
-🚀 AI Powered Shopping Experience
+<h3 style="color:white;">
+Assistant Online
 </h3>
+
+<p style="color:#cccccc;">
+Find stores, restaurants, offers, jobs and navigation using voice commands.
+</p>
 
 </div>
 """, unsafe_allow_html=True)
+
+st.markdown("## ⚡ Quick Actions")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.button("🏬 Find Store", use_container_width=True)
+
+with col2:
+    st.button("🍔 Food Court", use_container_width=True)
+
+with col3:
+    st.button("🎁 Offers", use_container_width=True)
+
+with col4:
+    st.button("💼 Jobs", use_container_width=True)
+
+st.markdown("## 🏬 Popular Stores")
+
+col1, col2, col3, col4 = st.columns(4)
+
+with col1:
+    st.markdown("""
+    <div style="
+    background: rgba(255,255,255,0.12);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    ">
+    🍎 Apple Store
+    </div>
+    """, unsafe_allow_html=True)
+
+with col2:
+    st.markdown("""
+    <div style="
+    background: rgba(255,255,255,0.12);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    ">
+    👟 Nike
+    </div>
+    """, unsafe_allow_html=True)
+
+with col3:
+    st.markdown("""
+    <div style="
+    background: rgba(255,255,255,0.12);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    ">
+    👗 Zara
+    </div>
+    """, unsafe_allow_html=True)
+
+with col4:
+    st.markdown("""
+    <div style="
+    background: rgba(255,255,255,0.12);
+    padding:20px;
+    border-radius:15px;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    ">
+    ☕ Starbucks
+    </div>
+    """, unsafe_allow_html=True)   
 
 # ---------------- SIDEBAR ---------------- #
 
@@ -443,10 +522,33 @@ with col2:
 # ---------------- VOICE ASSISTANT ---------------- #
 
 st.markdown("---")
-st.divider()
-st.subheader("🎤 Voice Assistant")
 
-if st.button("🎤 Speak Now"):
+st.markdown("""
+<div style="
+background: rgba(20,20,20,0.75);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,123,0,0.3);
+text-align:center;
+margin-bottom:20px;
+">
+
+<h2 style="color:#ff7b00;">
+🎙️ AI Voice Assistant
+</h2>
+
+<p style="color:white;">
+Assistant Online
+</p>
+
+<p style="color:#cccccc;">
+Ask about stores, food, jobs, offers, events and mall navigation.
+</p>
+
+</div>
+""", unsafe_allow_html=True)
+
+if st.button("🎙️ Start Voice Assistant", use_container_width=True):
 
     st.write("Listening...")
 
@@ -455,18 +557,20 @@ if st.button("🎤 Speak Now"):
     st.markdown(
     f"""
     <div style="
-        background-color:white;
-        color:black;
-        padding:15px;
-        border-radius:10px;
+        background: rgba(255,255,255,0.12);
+        color:white;
+        padding:18px;
+        border-radius:15px;
         font-size:18px;
-        margin-bottom:10px;
+        margin-bottom:12px;
+        border-left:4px solid #ff7b00;
     ">
-    🎤 You said: {user_text}
+    <b>🎤 You Said</b><br><br>
+    {user_text}
     </div>
     """,
     unsafe_allow_html=True
-)
+    )
 
     response = get_response(user_text)
 
@@ -500,30 +604,49 @@ if st.button("🎤 Speak Now"):
     )
 
     st.markdown(
-    f"""
-    <div style="
-        background-color:white;
-        color:black;
-        padding:15px;
-        border-radius:10px;
-        font-size:18px;
-    ">
-    {response}
-    </div>
-    """,
-    unsafe_allow_html=True
+f"""
+<div style="
+    background: rgba(255,123,0,0.15);
+    color:white;
+    padding:18px;
+    border-radius:15px;
+    font-size:18px;
+    border-left:4px solid #ff7b00;
+    margin-top:10px;
+">
+<b>🤖 Assistant</b><br><br>
+{response}
+</div>
+""",
+unsafe_allow_html=True
 )
 
 # ---------------- TEXT SEARCH ---------------- #
 
 st.divider()
+
 st.markdown("""
-<h2 style='text-align:center;'>
-🔍 Search Anything In The Mall
+<div style="
+background: rgba(20,20,20,0.75);
+padding:25px;
+border-radius:20px;
+border:1px solid rgba(255,123,0,0.3);
+text-align:center;
+margin-bottom:20px;
+">
+
+<h2 style="color:#ff7b00;">
+📍 Smart Mall Directory
 </h2>
+
+<p style="color:white;">
+Find stores, food outlets, offers, parking and services instantly.
+</p>
+
+</div>
 """, unsafe_allow_html=True)
-st.subheader("⌨️ Type Your Question")
-st.subheader("💡 Quick Suggestions")
+
+st.markdown("### 💡 Quick Suggestions")
 
 col1, col2, col3, col4 = st.columns(4)
 
@@ -563,7 +686,7 @@ user_query = st.text_input(
     "Ask about stores, food, parking, jobs, offers..."
 )
 
-if st.button("Search"):
+if st.button("🔍 Search Directory", use_container_width=True):
 
     if user_query:
 
@@ -598,11 +721,23 @@ if st.button("Search"):
             ("Assistant", response)
         )
 
-        st.text_area(
-          "Search Result",
-           response,
-           height=150
-        )
+        st.markdown(
+f"""
+<div style="
+background: rgba(255,255,255,0.12);
+color:white;
+padding:20px;
+border-radius:15px;
+border-left:4px solid #ff7b00;
+font-size:18px;
+margin-top:15px;
+">
+<b>🔍 Search Result</b><br><br>
+{response}
+</div>
+""",
+unsafe_allow_html=True
+)
 
 
 # ---------------- AUTO FLOOR MAP ---------------- #
