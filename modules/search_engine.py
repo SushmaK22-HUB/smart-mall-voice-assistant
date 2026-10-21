@@ -1,267 +1,214 @@
+import os
 import json
+import re
 
-# ---------------- LOAD JSON FILES ---------------- #
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+DATA_DIR = os.path.join(BASE_DIR, "data")
 
-with open("data/stores.json", "r") as file:
-    stores = json.load(file)
+def load_json_data(filename):
+    file_path = os.path.join(DATA_DIR, filename)
+    try:
+        with open(file_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception as e:
+        print(f"Warning loading {filename}: {e}")
+        return []
 
-with open("data/facilities.json", "r") as file:
-    facilities = json.load(file)
-
-with open("data/parking.json", "r") as file:
-    parking = json.load(file)
-
-with open("data/offers.json", "r") as file:
-    offers = json.load(file)
-
-with open("data/jobs.json", "r") as file:
-    jobs = json.load(file)
-
-with open("data/events.json", "r") as file:
-    events = json.load(file)
-
-with open("data/emergency.json", "r") as file:
-    emergency = json.load(file)
-
-with open("data/food.json", "r") as file:
-    food = json.load(file)
+stores = load_json_data("stores.json")
+facilities = load_json_data("facilities.json")
+parking = load_json_data("parking.json")
+offers = load_json_data("offers.json")
+jobs = load_json_data("jobs.json")
+events = load_json_data("events.json")
+emergency = load_json_data("emergency.json")
+food = load_json_data("food.json")
 
 
-# ---------------- STORE SEARCH ---------------- #
-
-def search_store(store_name):
-
+def search_store(query):
+    query_lower = query.lower().strip()
+    
+    # Pass 1: Match whole store name in the user's sentence (e.g. "nike" in "where is nike")
     for store in stores:
-
-        if store_name.lower() in store["name"].lower():
-
+        name = store.get("name", "").strip().lower()
+        if name and re.search(rf"\b{re.escape(name)}\b", query_lower):
             return (
-                f"🏬 Store: {store['name']}\n\n"
-                f"📂 Category: {store['category']}\n"
-                f"📍 Floor: {store['floor']}\n"
-                f"📌 Location: {store['location']}"
+                f"🏬 Store: {store.get('name')}\n\n"
+                f"📂 Category: {store.get('category', 'General')}\n"
+                f"📍 Floor: {store.get('floor', 'N/A')}\n"
+                f"📌 Location: {store.get('location', 'N/A')}"
             )
-
+            
+    # Pass 2: Partial match if user typed a keyword (e.g. "burger" matching "Burger King")
+    for store in stores:
+        name = store.get("name", "").strip().lower()
+        if len(query_lower) >= 3 and query_lower in name:
+            return (
+                f"🏬 Store: {store.get('name')}\n\n"
+                f"📂 Category: {store.get('category', 'General')}\n"
+                f"📍 Floor: {store.get('floor', 'N/A')}\n"
+                f"📌 Location: {store.get('location', 'N/A')}"
+            )
     return None
 
-# ---------------- FACILITY SEARCH ---------------- #
-
-def search_facility(facility_name):
-
+def search_facility(query):
+    query_lower = query.lower()
     for facility in facilities:
-        if facility_name.lower() in facility["name"].lower():
-
+        name = facility.get("name", "").lower()
+        if name and (name in query_lower or query_lower in name):
             return (
-                f"{facility['name']} is available on "
-                f"{facility['floor']} near "
-                f"{facility['location']}."
+                f"ℹ️ {facility.get('name')} is available on "
+                f"{facility.get('floor', 'N/A')} near "
+                f"{facility.get('location', 'N/A')}."
             )
-
     return None
 
-
-# ---------------- PARKING INFO ---------------- #
 
 def get_parking_info():
+    p_data = parking
+    if isinstance(parking, list) and len(parking) > 0:
+        p_data = parking[0]
+        
+    if isinstance(p_data, dict):
+        return (
+            f"🚗 Car Parking available at {p_data.get('floor', 'Basement')}. "
+            f"Charges: {p_data.get('charges', 'Standard rates apply')}."
+        )
+    return "🚗 Parking information is currently unavailable."
 
-    return (
-        f"Car Parking available at "
-        f"{parking['floor']}. "
-        f"Charges: {parking['charges']}"
-    )
-
-
-# ---------------- OFFERS ---------------- #
 
 def get_offers():
-
-    result = "Current Offers:\n\n"
-
+    if not offers:
+        return "No current offers available."
+    result = "🔥 Current Offers:\n\n"
     for offer in offers:
-        result += (
-            f"{offer['store_name']} - "
-            f"{offer['offer_title']}\n"
-        )
-
+        store_name = offer.get("store_name", "Special Offer")
+        offer_title = offer.get("offer_title", "")
+        result += f"• {store_name}: {offer_title}\n"
     return result
 
-
-# ---------------- JOBS ---------------- #
 
 def get_jobs():
-
-    result = "Available Jobs:\n\n"
-
+    if not jobs:
+        return "No job openings currently posted."
+    result = "💼 Available Jobs:\n\n"
     for job in jobs:
-        result += (
-            f"{job['job_title']} "
-            f"({job['department']})\n"
-        )
-
+        title = job.get("job_title", "Position")
+        dept = job.get("department", "Mall")
+        result += f"• {title} ({dept})\n"
     return result
 
-
-# ---------------- EVENTS ---------------- #
 
 def get_events():
-
-    result = "Upcoming Events:\n\n"
-
+    if not events:
+        return "No upcoming events scheduled."
+    result = "🎉 Upcoming Events:\n\n"
     for event in events:
-        result += (
-            f"{event['event_name']} - "
-            f"{event['date']}\n"
-        )
-
+        name = event.get("event_name", "Mall Event")
+        date = event.get("date", "Coming Soon")
+        result += f"• {name} - {date}\n"
     return result
 
-
-# ---------------- EMERGENCY ---------------- #
 
 def get_emergency():
-
-    result = "Emergency Information:\n\n"
-
+    if not emergency:
+        return "Emergency Contact: Security Desk on Ground Floor."
+    result = "🚨 Emergency Assistance:\n\n"
     for item in emergency:
-        result += (
-            f"{item['service_name']} - "
-            f"{item['location']}\n"
-        )
-
+        service = item.get("service_name", "Emergency Service")
+        location = item.get("location", "Help Desk")
+        result += f"• {service}: {location}\n"
     return result
 
 
-# ---------------- FOOD SEARCH ---------------- #
-
-def search_food(food_name):
-
+def search_food(query):
+    query_lower = query.lower()
     for category in food:
-
-        for restaurant in category["restaurants"]:
-
-            if food_name.lower() in restaurant["name"].lower():
-
+        restaurants = category.get("restaurants", [])
+        for restaurant in restaurants:
+            name = restaurant.get("name", "").lower()
+            if name and (name in query_lower or query_lower in name):
                 return (
-                    f"{restaurant['name']} is on "
-                    f"{restaurant['floor']}."
+                    f"🍔 {restaurant.get('name')} is located on "
+                    f"{restaurant.get('floor', 'Food Court')}."
                 )
-
     return None
 
-
-# ---------------- ALL STORES ---------------- #
 
 def get_all_stores():
-
-    result = "Available Stores:\n"
-
+    if not stores:
+        return "No stores listed."
+    result = "🏬 Available Stores:\n"
     for store in stores:
-        result += f"{store['name']} ({store['floor']})\n"
-
+        result += f"• {store.get('name')} ({store.get('floor', 'N/A')})\n"
     return result
 
-
-# ---------------- ALL FACILITIES ---------------- #
 
 def get_all_facilities():
-
-    result = "Available Facilities:\n"
-
+    if not facilities:
+        return "No facilities listed."
+    result = "ℹ️ Available Facilities:\n"
     for facility in facilities:
-        result += f"{facility['name']} ({facility['floor']})\n"
-
+        result += f"• {facility.get('name')} ({facility.get('floor', 'N/A')})\n"
     return result
 
-
-# ---------------- ALL FOOD OUTLETS ---------------- #
 
 def get_all_food():
-
-    result = "Food Outlets:\n"
-
+    if not food:
+        return "No food outlets listed."
+    result = "🍔 Food Outlets:\n"
     for category in food:
-
-        for restaurant in category["restaurants"]:
-
-            result += (
-                f"{restaurant['name']} "
-                f"({restaurant['floor']})\n"
-            )
-
+        for restaurant in category.get("restaurants", []):
+            result += f"• {restaurant.get('name')} ({restaurant.get('floor', 'Food Court')})\n"
     return result
 
-# ---------------- FLOOR-WISE STORES ---------------- #
 
 def get_stores_by_floor(floor_name):
-
     result = f"Stores on {floor_name}:\n"
-
     found = False
-
     for store in stores:
-
-        if floor_name.lower() in store["floor"].lower():
-
-            result += f"{store['name']}\n"
+        if floor_name.lower() in store.get("floor", "").lower():
+            result += f"• {store.get('name')}\n"
             found = True
+    return result if found else f"No stores found on {floor_name}."
 
-    if found:
-        return result
-
-    return f"No stores found on {floor_name}."
-
-# ---------------- FOOD BY FLOOR ---------------- #
 
 def get_food_by_floor(floor_name):
-
     result = f"Food Outlets on {floor_name}:\n"
-
     found = False
+    for category in food:
+        for restaurant in category.get("restaurants", []):
+            if floor_name.lower() in restaurant.get("floor", "").lower():
+                result += f"• {restaurant.get('name')}\n"
+                found = True
+    return result if found else f"No food outlets found on {floor_name}."
 
-    for item in food:
-
-        if floor_name.lower() in item["floor"].lower():
-
-            result += f"{item['name']}\n"
-            found = True
-
-    if found:
-        return result
-
-    return f"No food outlets found on {floor_name}."
-
-# ---------------- STORE CATEGORY SEARCH ---------------- #
 
 def get_stores_by_category(category_name):
-
     result = f"{category_name.title()} Stores:\n"
-
     found = False
-
     for store in stores:
-
-        if category_name.lower() in store["category"].lower():
-
-            result += f"{store['name']}\n"
+        if category_name.lower() in store.get("category", "").lower():
+            result += f"• {store.get('name')}\n"
             found = True
+    return result if found else f"No stores found in category: {category_name}."
 
-    if found:
-        return result
-
-    return f"No stores found in category: {category_name}"
-
-# ---------------- STORE NAVIGATION ---------------- #
 
 def get_navigation(store_name):
-
+    query_lower = store_name.lower().strip()
+    # Pass 1: Whole-word match (so "how" doesn't match "W")
     for store in stores:
-
-        if store_name.lower() in store["name"].lower():
-
+        name = store.get("name", "").strip().lower()
+        if name and re.search(rf"\b{re.escape(name)}\b", query_lower):
             return (
-                f"To reach {store['name']}, "
-                f"go to {store['floor']} "
-                f"near {store['location']}."
+                f"To reach {store.get('name')}, go to {store.get('floor', 'designated floor')} "
+                f"near {store.get('location', 'information desk')}."
             )
-
-    return None
+    # Pass 2: Partial keyword match
+    for store in stores:
+        name = store.get("name", "").strip().lower()
+        if len(query_lower) >= 3 and query_lower in name:
+            return (
+                f"To reach {store.get('name')}, go to {store.get('floor', 'designated floor')} "
+                f"near {store.get('location', 'information desk')}."
+            )
+    return f"Navigation directions for {store_name} are currently unavailable."

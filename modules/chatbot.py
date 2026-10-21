@@ -1,4 +1,16 @@
+import os
+import re
+import warnings
+warnings.filterwarnings("ignore")
+
 import google.generativeai as genai
+
+# Safely load dotenv only if installed
+try:
+    from dotenv import load_dotenv
+    load_dotenv()
+except ImportError:
+    pass
 
 from modules.search_engine import (
     search_store,
@@ -18,223 +30,127 @@ from modules.search_engine import (
     get_navigation
 )
 
-# ---------------- GEMINI CONFIG ---------------- #
+# Read API key from environment variable or set your key here
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY", "")
 
-GEMINI_API_KEY = ""
+model = None
+if GEMINI_API_KEY:
+    try:
+        genai.configure(api_key=GEMINI_API_KEY)
+        model = genai.GenerativeModel("gemini-1.5-flash")
+    except Exception as e:
+        print("Gemini initialization warning:", e)
 
-genai.configure(api_key=GEMINI_API_KEY)
-
-model = genai.GenerativeModel("gemini-2.5-flash")
-
-# ---------------- MAIN RESPONSE FUNCTION ---------------- #
 
 def get_response(user_input):
+    if not user_input or not user_input.strip():
+        return "I'm listening! You can ask about stores, restaurants, offers, parking, or navigation."
 
-    user_input_lower = user_input.lower()
+    query = user_input.strip()
+    query_lower = query.lower()
 
-    # ---------- FOOD FLOOR SEARCH ---------- #
+    # 1. Emergency & Help
+    if any(word in query_lower for word in ["emergency", "fire", "security", "first aid", "help desk"]):
+        return get_emergency()
 
-    if "food on third floor" in user_input_lower:
+    # 2. Navigation & Directions
+    if any(word in query_lower for word in ["reach", "navigate", "route to", "way to", "how to go", "direction"]):
+        nav_result = get_navigation(query)
+        if "unavailable" not in nav_result:
+            return nav_result
+
+    # 3. Floor-Wise Food & Store Searches
+    if "ground floor" in query_lower and ("food" in query_lower or "restaurant" in query_lower or "cafe" in query_lower):
+        return get_food_by_floor("Ground Floor")
+    if "first floor" in query_lower and ("food" in query_lower or "restaurant" in query_lower or "cafe" in query_lower):
+        return get_food_by_floor("First Floor")
+    if "second floor" in query_lower and ("food" in query_lower or "restaurant" in query_lower or "cafe" in query_lower):
+        return get_food_by_floor("Second Floor")
+    if "third floor" in query_lower and ("food" in query_lower or "restaurant" in query_lower or "cafe" in query_lower):
         return get_food_by_floor("Third Floor")
 
-    if "restaurants on third floor" in user_input_lower:
-        return get_food_by_floor("Third Floor")
-
-    if "food court" in user_input_lower:
-        return get_food_by_floor("Third Floor")
-
-    # ---------- FLOOR SEARCH ---------- #
-
-    if "stores on first floor" in user_input_lower:
+    if "ground floor" in query_lower:
+        return get_stores_by_floor("Ground Floor")
+    if "first floor" in query_lower:
         return get_stores_by_floor("First Floor")
-
-    if "stores in first floor" in user_input_lower:
-        return get_stores_by_floor("First Floor")
-
-    if "stores on second floor" in user_input_lower:
+    if "second floor" in query_lower:
         return get_stores_by_floor("Second Floor")
-
-    if "stores in second floor" in user_input_lower:
-        return get_stores_by_floor("Second Floor")
-
-    if "stores on third floor" in user_input_lower:
+    if "third floor" in query_lower:
         return get_stores_by_floor("Third Floor")
 
-    if "stores in third floor" in user_input_lower:
-        return get_stores_by_floor("Third Floor")
+    # 4. Parking Info
+    if any(word in query_lower for word in ["park", "parking", "car", "vehicle"]):
+        return get_parking_info()
 
-    # ---------- ALL STORES ---------- #
-
-    if "all stores" in user_input_lower or "stores list" in user_input_lower:
-        return get_all_stores()
-
-    # ---------- ALL FACILITIES ---------- #
-
-    if "all facilities" in user_input_lower:
-        return get_all_facilities()
-
-    # ---------- ALL FOOD ---------- #
-
-    if "all food" in user_input_lower or "food outlets" in user_input_lower:
-        return get_all_food()
-
-    # ---------- ALL JOBS ---------- #
-
-    if "all jobs" in user_input_lower:
-        return get_jobs()
-
-    # ---------- ALL OFFERS ---------- #
-
-    if "all offers" in user_input_lower:
+    # 5. Offers & Discounts
+    if any(word in query_lower for word in ["offer", "discount", "deal", "sale"]):
         return get_offers()
 
-    # ---------- ALL EVENTS ---------- #
+    # 6. Jobs & Careers
+    if any(word in query_lower for word in ["job", "career", "vacancy", "hiring", "opening"]):
+        return get_jobs()
 
-    if "all events" in user_input_lower:
+    # 7. Events & Movies
+    if any(word in query_lower for word in ["event", "movie", "cinema", "show", "activity"]):
         return get_events()
-    
-    # ---------- CATEGORY SEARCH ---------- #
 
-    if "fashion" in user_input_lower:
-        return get_stores_by_category("Fashion")
+    # 8. All Directory Lists
+    if "all stores" in query_lower or "store directory" in query_lower:
+        return get_all_stores()
+    if "all food" in query_lower or "food court" in query_lower or "restaurants" in query_lower:
+        return get_all_food()
+    if "all facilities" in query_lower:
+        return get_all_facilities()
 
-    if "sportswear" in user_input_lower:
-        return get_stores_by_category("Sportswear")
-    
-    if "electronics" in user_input_lower:
-        return get_stores_by_category("Electronics")
+    # 9. Store Categories
+    categories = ["fashion", "sportswear", "electronics", "footwear", "gaming", "entertainment", "cafe"]
+    for cat in categories:
+        if cat in query_lower:
+            return get_stores_by_category(cat)
 
-    if "food" in user_input_lower:
-        return get_stores_by_category("Food")
-
-    if "footwear" in user_input_lower:
-        return get_stores_by_category("Footwear")
-
-    if "gaming" in user_input_lower:
-        return get_stores_by_category("Gaming")
-
-    if "entertainment" in user_input_lower:
-        return get_stores_by_category("Entertainment")
-
-    if "cafe" in user_input_lower:
-        return get_stores_by_category("Cafe")
-
-    if "restaurant" in user_input_lower:
-        return get_stores_by_category("Restaurant")
-    
-    # ---------- NAVIGATION ---------- #
-
-    if "reach nike" in user_input_lower:
-        return get_navigation("Nike")
-
-    if "route to nike" in user_input_lower:
-        return get_navigation("Nike")
-
-    if "navigate to nike" in user_input_lower:
-        return get_navigation("Nike")
-
-    if "reach zara" in user_input_lower:
-        return get_navigation("Zara")
-
-    if "route to zara" in user_input_lower:
-        return get_navigation("Zara")
-
-    if "navigate to zara" in user_input_lower:
-        return get_navigation("Zara")
-
-    # ---------- STORE SEARCH ---------- #
-
-    store_result = search_store(user_input)
-
+    # 10. Specific Store Search
+    store_result = search_store(query)
     if store_result:
         return store_result
 
-    # ---------- FACILITY SEARCH ---------- #
-
-    facility_result = search_facility(user_input)
-
-    if facility_result:
-        return facility_result
-
-    # ---------- FOOD SEARCH ---------- #
-
-    food_result = search_food(user_input)
-
+    # 11. Specific Food Search
+    food_result = search_food(query)
     if food_result:
         return food_result
 
-    # ---------- PARKING ---------- #
+    # 12. Facilities (Washroom, ATM, Elevator, etc.)
+    facility_result = search_facility(query)
+    if facility_result:
+        return facility_result
 
-    if "parking" in user_input_lower:
-        return get_parking_info()
-
-    # ---------- OFFERS ---------- #
-
-    if "offer" in user_input_lower:
-        return get_offers()
-
-    # ---------- JOBS ---------- #
-
-    if "job" in user_input_lower:
-        return get_jobs()
-
-    # ---------- EVENTS ---------- #
-
-    if "event" in user_input_lower:
-        return get_events()
-
-    # ---------- EMERGENCY ---------- #
-
-    if (
-        "emergency" in user_input_lower
-        or "exit" in user_input_lower
-        or "fire" in user_input_lower
-    ):
-        return get_emergency()
-    
-
-    # ---------- GEMINI FALLBACK ---------- #
-
-    try:
-
-        response = model.generate_content(
-            f"""
-            You are a Smart Mall Assistant.
-
-            Rules:
-            - Keep answers short.
-            - Focus only on mall-related help.
-            - Be polite.
-            - Do not give long explanations.
-
-            User Question:
-            {user_input}
+    # 13. General AI Fallback with Gemini
+    if model:
+        try:
+            prompt = f"""
+            You are a polite, helpful Smart Mall Assistant.
+            Answer this mall visitor's question briefly in 1 to 2 clear sentences.
+            If it is completely unrelated to a shopping mall, guide them politely to mall services.
+            Visitor question: {query}
             """
-        )
+            response = model.generate_content(prompt)
+            if response and response.text:
+                return response.text.strip()
+        except Exception as e:
+            print("Gemini fallback error:", e)
 
-        return response.text
+    # Friendly default if AI is unavailable or offline
+    return (
+        "I couldn't find an exact match in our mall directory. "
+        "You can ask me about stores (e.g., 'Where is Nike?'), food outlets, "
+        "today's offers, parking, or floor navigation."
+    )
 
-    except Exception as e:
-        return f"Error: {e}"
-
-
-# ---------------- TERMINAL TEST ---------------- #
 
 if __name__ == "__main__":
-
-    print("🛍️ Smart Mall AI Assistant Started")
-    print("Type 'exit' to stop\n")
-
+    print("🛍️ Smart Mall Assistant Terminal Test")
+    print("Type 'exit' to quit.\n")
     while True:
-
         user = input("You: ")
-
         if user.lower() == "exit":
-
-            print("Assistant: Thank you for visiting Smart Mall")
             break
-
-        answer = get_response(user)
-
-        print("\nAssistant:", answer)
-        print()
+        print("Assistant:\n", get_response(user), "\n")

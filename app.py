@@ -10,847 +10,395 @@ from modules.search_engine import (
     get_jobs,
     get_offers,
     get_events,
-    get_emergency
+    get_emergency,
+    get_stores_by_category,
+    get_navigation
 )
+
+# ---------------- SESSION STATE ---------------- #
 
 if "selected_map" not in st.session_state:
     st.session_state.selected_map = None
 
 if "search_count" not in st.session_state:
-    st.session_state.search_count = 0    
-
-# ---------------- CHAT HISTORY ---------------- #
+    st.session_state.search_count = 0
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-if "search_count" not in st.session_state:
-    st.session_state.search_count = 0    
-
-# ---------------- PATHS ---------------- #
+# ---------------- ASSET PATHS ---------------- #
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-
-LOGO_PATH = os.path.join(BASE_DIR, "assets", "mall_logo.jpg")
-MAP_PATH = os.path.join(BASE_DIR, "assets", "mall_map.jpg")
 
 GROUND_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "ground_floor.jpg")
 FIRST_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "first_floor.jpg")
 SECOND_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "second_floor.jpg")
 THIRD_FLOOR_PATH = os.path.join(BASE_DIR, "assets", "third_floor.jpg")
-MALL_EXTERIOR = os.path.join(BASE_DIR, "assets", "mall_exterior.jpg")
-MALL_INTERIOR = os.path.join(BASE_DIR, "assets", "mall_interior.jpg")
 
-# ---------------- PAGE CONFIG ---------------- #
+# ---------------- PAGE CONFIG & STITCH STYLING ---------------- #
 
 st.set_page_config(
-    page_title="Smart Mall Voice Assistant",
+    page_title="Smart Mall AI Voice Assistant",
     page_icon="🛍️",
     layout="wide"
 )
 
 st.markdown("""
 <style>
-
-/* Background Image */
+/* Clean Professional Dark Theme */
 .stApp {
-    background-image: linear-gradient(
-        rgba(0,0,0,0.55),
-        rgba(0,0,0,0.55)
-    ),
-    url("https://images.unsplash.com/photo-1519567241046-7f570eee3ce6");
-    
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    background: radial-gradient(circle at 50% 10%, #1e222d 0%, #0d0f14 100%);
+    color: #e6e6e6;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Main text */
-h1,h2,h3 {
-    color: white !important;
+/* Headings */
+h1, h2, h3, h4 {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    letter-spacing: -0.5px;
 }
 
-.hero p {
-    color: #f0f0f0 !important;
+/* Stitch Card Containers */
+.stitch-card {
+    background: rgba(26, 30, 41, 0.75);
+    border: 1px solid rgba(255, 123, 0, 0.2);
+    border-radius: 18px;
+    padding: 24px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
-/* Sidebar */
-section[data-testid="stSidebar"] {
-    background: rgba(20,20,20,0.75);
-    backdrop-filter: blur(10px);
+.stitch-card:hover {
+    border-color: rgba(255, 123, 0, 0.5);
+    transform: translateY(-2px);
 }
 
-/* Buttons */
+/* Orange Gradient Primary Buttons */
 .stButton > button {
-    border-radius: 15px;
-    height: 50px;
-    border: none;
-    background: linear-gradient(
-        135deg,
-        #ff7b00,
-        #ff4d4d
-    );
-    color: white;
-    font-weight: bold;
-    transition: 0.3s;
+    background: linear-gradient(135deg, #ff7b00 0%, #ff5500 100%) !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 14px !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    height: 48px !important;
+    box-shadow: 0 4px 15px rgba(255, 123, 0, 0.35) !important;
+    transition: all 0.25s ease !important;
 }
 
 .stButton > button:hover {
-    transform: scale(1.05);
+    transform: translateY(-2px) scale(1.02) !important;
+    box-shadow: 0 6px 20px rgba(255, 123, 0, 0.55) !important;
 }
 
-/* Statistics Cards */
-div[data-testid="metric-container"] {
-    background: rgba(255,255,255,0.18);
-    backdrop-filter: blur(12px);
-    border: 1px solid rgba(255,255,255,0.3);
+/* Text Input Styling */
+.stTextInput > div > div > input {
+    background-color: rgba(20, 24, 33, 0.9) !important;
+    color: #ffffff !important;
+    border: 1px solid rgba(255, 123, 0, 0.3) !important;
+    border-radius: 14px !important;
+    padding: 12px 16px !important;
+}
+
+.stTextInput > div > div > input:focus {
+    border-color: #ff7b00 !important;
+    box-shadow: 0 0 10px rgba(255, 123, 0, 0.4) !important;
+}
+
+/* Sidebar Dark Glass */
+section[data-testid="stSidebar"] {
+    background-color: #0b0d12 !important;
+    border-right: 1px solid rgba(255, 123, 0, 0.2) !important;
+}
+
+/* Status Badge */
+.status-pill {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(0, 230, 118, 0.12);
+    color: #00e676;
+    border: 1px solid rgba(0, 230, 118, 0.3);
+    padding: 6px 14px;
     border-radius: 20px;
-    padding: 20px;
+    font-size: 13px;
+    font-weight: 600;
 }
-            
-[data-testid="stMetricValue"] {
-    color: white !important;
-}
-
-[data-testid="stMetricLabel"] {
-    color: white !important;
-}            
-
-/* Text Input */
-input {
-    border-radius: 15px !important;
-}
-
-/* Hero Banner */
-.hero {
-    text-align:center;
-    padding:40px;
-    background:rgba(0,0,0,0.45);
-    border-radius:20px;
-    margin-bottom:30px;
-}
-
-.hero h1 {
-    font-size:70px;
-    color:white;
-    font-weight:bold;
-}
-
-.hero p {
-    font-size:24px;
-    color:#f0f0f0;
-}
-            
-textarea {
-    color: black !important;
-    background-color: white !important;
-}
-
-.stCode {
-    color: black !important;
-}            
-            
-div[data-testid="metric-container"] {
-    transition: 0.3s;
-}
-
-div[data-testid="metric-container"]:hover {
-    transform: translateY(-5px);
-}            
-
 </style>
 """, unsafe_allow_html=True)
 
-# ---------------- HEADER ---------------- #
+# ---------------- APPLICATION HEADER ---------------- #
 
 st.markdown("""
-<div style="
-background: rgba(20,20,20,0.75);
-padding:30px;
-border-radius:20px;
-border:1px solid rgba(255,255,255,0.1);
-text-align:center;
-">
-
-<h1 style="color:#ff7b00;">
-🎙️ Smart Mall Voice Assistant
-</h1>
-
-<h3 style="color:white;">
-Assistant Online
-</h3>
-
-<p style="color:#cccccc;">
-Find stores, restaurants, offers, jobs and navigation using voice commands.
-</p>
-
+<div style="text-align: center; margin-bottom: 25px;">
+    <h1 style="color: #ff7b00; font-size: 44px; margin-bottom: 8px;">
+        🎙️ Smart Mall AI Assistant
+    </h1>
+    <span class="status-pill">
+        🟢 Assistant Online & Ready
+    </span>
+    <p style="color: #a0a6b5; font-size: 16px; margin-top: 10px;">
+        Speak or type to navigate stores, food outlets, offers, events, and floor maps.
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("## ⚡ Quick Actions")
+# ---------------- HERO VOICE ASSISTANT SECTION ---------------- #
 
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.button("🏬 Find Store", use_container_width=True)
-
-with col2:
-    st.button("🍔 Food Court", use_container_width=True)
-
-with col3:
-    st.button("🎁 Offers", use_container_width=True)
-
-with col4:
-    st.button("💼 Jobs", use_container_width=True)
-
-st.markdown("## 🏬 Popular Stores")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.markdown("""
-    <div style="
-    background: rgba(255,255,255,0.12);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    color:white;
-    font-weight:bold;
-    ">
-    🍎 Apple Store
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div style="
-    background: rgba(255,255,255,0.12);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    color:white;
-    font-weight:bold;
-    ">
-    👟 Nike
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("""
-    <div style="
-    background: rgba(255,255,255,0.12);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    color:white;
-    font-weight:bold;
-    ">
-    👗 Zara
-    </div>
-    """, unsafe_allow_html=True)
-
-with col4:
-    st.markdown("""
-    <div style="
-    background: rgba(255,255,255,0.12);
-    padding:20px;
-    border-radius:15px;
-    text-align:center;
-    color:white;
-    font-weight:bold;
-    ">
-    ☕ Starbucks
-    </div>
-    """, unsafe_allow_html=True)   
-
-# ---------------- SIDEBAR ---------------- #
-
-with st.sidebar:
-
-    st.header("Mall Services")
-
-    st.write("🛍 Stores")
-    st.write("🍔 Food")
-    st.write("🚗 Parking")
-    st.write("💼 Jobs")
-    st.write("🎁 Offers")
-    st.write("📅 Events")
-    st.write("🚨 Emergency")
-
-st.markdown("---")
 st.markdown("""
-<div style="
-background:white;
-color:black;
-padding:15px;
-border-radius:10px;
-font-weight:bold;
-text-align:center;
-">
-🏬 Welcome to Smart Mall. Search stores, restaurants, offers, events and navigate floors instantly.
+<div class="stitch-card" style="text-align: center; margin-bottom: 25px; border: 2px solid rgba(255,123,0,0.35);">
+    <h3 style="color: #ffffff; margin-bottom: 6px;">
+        Tap Below to Speak with AI
+    </h3>
+    <p style="color: #b0b7c3; font-size: 15px; margin-bottom: 20px;">
+        Try saying: <i>"Where is Nike?"</i>, <i>"Food court on third floor"</i>, or <i>"Today's offers"</i>
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-st.subheader("📊 Mall Statistics")
+col_v1, col_v2, col_v3 = st.columns([1, 2, 1])
+with col_v2:
+    speak_button = st.button("🎙️ TAP TO SPEAK", use_container_width=True)
 
-col1, col2, col3 = st.columns(3)
+if speak_button:
+    with st.spinner("Listening to your voice..."):
+        user_text = listen()
 
-with col1:
-    st.metric(
-        "🛍 Stores",
-        len(get_all_stores().splitlines()) - 1
-    )
-
-with col2:
-    st.metric(
-        "🍔 Food Outlets",
-        len(get_all_food().splitlines()) - 1
-    )
-
-with col3:
-    st.metric(
-        "🔍 Searches",
-        st.session_state.search_count
-    )
-
-# ---------------- QUICK SERVICES ---------------- #
-st.subheader("🔥 Today's Top Offers")
-
-col1, col2, col3 = st.columns(3)
-
-with col1:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    ">
-    👖 Levi's - Flat 50% Off
+    st.markdown(f"""
+    <div class="stitch-card" style="border-left: 5px solid #ff7b00; margin-top: 20px; padding: 18px;">
+        <span style="color: #ff7b00; font-weight: 700; font-size: 14px; text-transform: uppercase;">🎤 You Asked</span>
+        <p style="font-size: 18px; color: #ffffff; margin-top: 6px; margin-bottom: 0;">{user_text}</p>
     </div>
     """, unsafe_allow_html=True)
 
-with col2:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    ">
-    🍔 KFC - Buy 1 Get 1 Free
-    </div>
-    """, unsafe_allow_html=True)
+    with st.spinner("Finding information..."):
+        response = get_response(user_text)
 
-with col3:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    ">
-    👟 Nike Summer Sale
-    </div>
-    """, unsafe_allow_html=True)
-
-st.divider()    
-st.subheader("⚡ Quick Services")
-st.subheader("⭐ Popular Stores")
-
-col1, col2, col3, col4 = st.columns(4)
-
-with col1:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
-    ">
-    👟 Nike
-    </div>
-    """, unsafe_allow_html=True)
-
-with col2:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
-    ">
-    👗 Zara
-    </div>
-    """, unsafe_allow_html=True)
-
-with col3:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
-    ">
-    📱 Apple Store
-    </div>
-    """, unsafe_allow_html=True)
-
-with col4:
-    st.markdown("""
-    <div style="
-    background:white;
-    color:black;
-    padding:15px;
-    border-radius:10px;
-    text-align:center;
-    font-weight:bold;
-    ">
-    ☕ Starbucks
-    </div>
-    """, unsafe_allow_html=True)
-
-
-if st.button("🍔 View Food Outlets"):
-    st.text_area(
-        "Food Outlets",
-        get_all_food(),
-        height=250
-    )
-
-if st.button("📋 View All Stores"):
-
-    st.subheader("🛍 Store Directory")
-
-    stores_text = get_all_stores()
-
-    st.text_area(
-    "Store Directory",
-    stores_text,
-    height=300
-)
-
-if st.button("💼 View Jobs"):
-    st.text_area(
-        "Available Jobs",
-        get_jobs(),
-        height=250
-    )
-
-if st.button("🎁 View Offers"):
-    st.text_area(
-        "Current Offers",
-        get_offers(),
-        height=250
-    )
-
-if st.button("🎉 View Events"):
-    st.text_area(
-        "Upcoming Events",
-        get_events(),
-        height=250
-    )
-
-if st.button("🚨 Emergency Information"):
-    st.text_area(
-        "Emergency Information",
-        get_emergency(),
-        height=250
-    )
-st.divider()
-st.image(
-    MALL_INTERIOR,
-    width=700
-)    
-st.subheader("📸 Mall Gallery")
-
-col1, col2 = st.columns(2)
-
-with col1:
-    st.image(MALL_EXTERIOR)
-
-with col2:
-    st.image(MALL_INTERIOR)
-
-# ---------------- FLOOR MAPS ---------------- #
-st.divider()
-st.subheader("🗺️ Floor Maps")
-
-col1, col2 = st.columns(2)
-
-with col1:
-
-    if st.button("Ground Floor"):
-        st.image(
-            GROUND_FLOOR_PATH,
-            caption="Ground Floor",
-            use_container_width=True
-        )
-
-    if st.button("First Floor"):
-        st.image(
-            FIRST_FLOOR_PATH,
-            caption="First Floor",
-            use_container_width=True
-        )
-
-with col2:
-
-    if st.button("Second Floor"):
-        st.image(
-            SECOND_FLOOR_PATH,
-            caption="Second Floor",
-            use_container_width=True
-        )
-
-    if st.button("Third Floor"):
-        st.image(
-            THIRD_FLOOR_PATH,
-            caption="Third Floor",
-            use_container_width=True
-        )
-
-# ---------------- VOICE ASSISTANT ---------------- #
-
-st.markdown("---")
-
-st.markdown("""
-<div style="
-background: rgba(20,20,20,0.75);
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,123,0,0.3);
-text-align:center;
-margin-bottom:20px;
-">
-
-<h2 style="color:#ff7b00;">
-🎙️ AI Voice Assistant
-</h2>
-
-<p style="color:white;">
-Assistant Online
-</p>
-
-<p style="color:#cccccc;">
-Ask about stores, food, jobs, offers, events and mall navigation.
-</p>
-
-</div>
-""", unsafe_allow_html=True)
-
-if st.button("🎙️ Start Voice Assistant", use_container_width=True):
-
-    st.write("Listening...")
-
-    user_text = listen()
-
-    st.markdown(
-    f"""
-    <div style="
-        background: rgba(255,255,255,0.12);
-        color:white;
-        padding:18px;
-        border-radius:15px;
-        font-size:18px;
-        margin-bottom:12px;
-        border-left:4px solid #ff7b00;
-    ">
-    <b>🎤 You Said</b><br><br>
-    {user_text}
-    </div>
-    """,
-    unsafe_allow_html=True
-    )
-
-    response = get_response(user_text)
-
+    # Audio spoken output
     speak(response)
 
+    # Automatic Floor Map Detection based on response
     st.session_state.selected_map = None
-
-    # Auto floor map
-    if "First Floor" in response:
+    if "first floor" in response.lower():
         st.session_state.selected_map = FIRST_FLOOR_PATH
-
-    elif "Second Floor" in response:
+    elif "second floor" in response.lower():
         st.session_state.selected_map = SECOND_FLOOR_PATH
-
-    elif "Third Floor" in response:
-        st.session_state.selected_map = THIRD_FLOOR_PATH   
-
-    elif "Ground Floor" in response:
+    elif "third floor" in response.lower():
+        st.session_state.selected_map = THIRD_FLOOR_PATH
+    elif "ground floor" in response.lower():
         st.session_state.selected_map = GROUND_FLOOR_PATH
 
-    # Analytics
+    # Analytics increment & History logging
     st.session_state.search_count += 1
+    st.session_state.chat_history.append(("You", user_text))
+    st.session_state.chat_history.append(("Assistant", response))
 
-    # Save conversation
-    st.session_state.chat_history.append(
-        ("You", user_text)
-    )
+    st.markdown(f"""
+    <div class="stitch-card" style="border-left: 5px solid #00e676; margin-top: 15px; padding: 18px;">
+        <span style="color: #00e676; font-weight: 700; font-size: 14px; text-transform: uppercase;">🤖 Assistant</span>
+        <div style="font-size: 18px; color: #ffffff; margin-top: 6px; white-space: pre-wrap;">{response}</div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    st.session_state.chat_history.append(
-        ("Assistant", response)
-    )
+    if st.session_state.selected_map and os.path.exists(st.session_state.selected_map):
+        st.markdown("<h4 style='color:#ff7b00; text-align:center; margin-top:20px;'>📍 Recommended Floor Map</h4>", unsafe_allow_html=True)
+        st.image(st.session_state.selected_map, use_container_width=True)
 
-    st.markdown(
-f"""
-<div style="
-    background: rgba(255,123,0,0.15);
-    color:white;
-    padding:18px;
-    border-radius:15px;
-    font-size:18px;
-    border-left:4px solid #ff7b00;
-    margin-top:10px;
-">
-<b>🤖 Assistant</b><br><br>
-{response}
-</div>
-""",
-unsafe_allow_html=True
-)
+st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
-# ---------------- TEXT SEARCH ---------------- #
+# ---------------- SIDEBAR: UTILITIES, ANALYTICS & HISTORY ---------------- #
 
-st.divider()
+with st.sidebar:
+    st.markdown("""
+    <div style="text-align: center; padding-bottom: 15px;">
+        <h2 style="color: #ff7b00; margin-bottom: 4px;">🏬 Smart Mall</h2>
+        <span class="status-pill">Interactive Kiosk</span>
+    </div>
+    """, unsafe_allow_html=True)
 
-st.markdown("""
-<div style="
-background: rgba(20,20,20,0.75);
-padding:25px;
-border-radius:20px;
-border:1px solid rgba(255,123,0,0.3);
-text-align:center;
-margin-bottom:20px;
-">
+    # Emergency Quick Button
+    if st.button("🚨 Emergency Assistance", use_container_width=True):
+        st.error(get_emergency())
 
-<h2 style="color:#ff7b00;">
-📍 Smart Mall Directory
-</h2>
+    st.markdown("---")
 
-<p style="color:white;">
-Find stores, food outlets, offers, parking and services instantly.
-</p>
+    # Analytics Counter
+    st.markdown("### 📈 Live Analytics")
+    st.metric(label="Total Interactions", value=st.session_state.search_count)
 
-</div>
-""", unsafe_allow_html=True)
+    st.markdown("---")
 
-st.markdown("### 💡 Quick Suggestions")
+    # Conversation History
+    st.markdown("### 💬 Chat History")
+    if len(st.session_state.chat_history) == 0:
+        st.caption("No conversations recorded yet.")
+    else:
+        for speaker, message in st.session_state.chat_history[-6:]:
+            if speaker == "You":
+                st.markdown(f"**👤 You:** {message}")
+            else:
+                st.markdown(f"**🤖 AI:** {message}")
 
-col1, col2, col3, col4 = st.columns(4)
+        col_h1, col_h2 = st.columns(2)
+        with col_h1:
+            if st.button("🗑️ Clear", use_container_width=True):
+                st.session_state.chat_history = []
+                st.rerun()
+        with col_h2:
+            chat_text = "\n".join([f"{s}: {m}" for s, m in st.session_state.chat_history])
+            st.download_button("📥 Save", data=chat_text, file_name="chat_history.txt", use_container_width=True)
 
-with col1:
-    if st.button("Nike"):
-        st.text_area(
-            "Nike Result",
-            get_response("Nike"),
-            height=120
-        )
+    st.markdown("---")
+    st.caption("Final Year B.E. AI & Data Science Project • Stanley College")
 
-with col2:
-    if st.button("KFC"):
-        st.text_area(
-            "KFC Result",
-            get_response("KFC"),
-            height=120
-        )
+# ---------------- MAIN CONTENT: 3 STITCH TABS ---------------- #
 
-with col3:
-    if st.button("Parking"):
-        st.text_area(
-            "Parking Result",
-            get_response("Parking"),
-            height=120
-        )
+tab_home, tab_dir, tab_nav = st.tabs([
+    "🏠 Home & Highlights", 
+    "📋 Mall Directory", 
+    "🗺️ Floor Navigation"
+])
 
-with col4:
-    if st.button("Offers"):
-        st.text_area(
-            "Offers Result",
-            get_response("Offers"),
-            height=120
-        )
+# ================= TAB 1: HOME & HIGHLIGHTS ================= #
+with tab_home:
+    st.markdown("<h3 style='color:#ff7b00; margin-top:15px;'>🔥 Today's Top Offers</h3>", unsafe_allow_html=True)
+    col_o1, col_o2, col_o3 = st.columns(3)
+    with col_o1:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center; height: 130px;">
+            <h4 style="color: #ff7b00; margin-bottom: 5px;">🔥 Flat 50% OFF</h4>
+            <b>Levi's</b><br>
+            <span style="color:#b0b7c3; font-size:13px;">Summer Fashion Sale</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_o2:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center; height: 130px;">
+            <h4 style="color: #ff7b00; margin-bottom: 5px;">🍔 BOGO Deal</h4>
+            <b>Burger King</b><br>
+            <span style="color:#b0b7c3; font-size:13px;">Buy 1 Get 1 Burger Free</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_o3:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center; height: 130px;">
+            <h4 style="color: #ff7b00; margin-bottom: 5px;">👟 Mega Sale</h4>
+            <b>Nike</b><br>
+            <span style="color:#b0b7c3; font-size:13px;">Exclusive Sportswear Deals</span>
+        </div>
+        """, unsafe_allow_html=True)
 
-user_query = st.text_input(
-    "Ask about stores, food, parking, jobs, offers..."
-)
+    st.markdown("<h3 style='color:#ff7b00; margin-top:25px;'>⭐ Popular Stores</h3>", unsafe_allow_html=True)
+    col_s1, col_s2, col_s3, col_s4 = st.columns(4)
+    with col_s1:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center;">
+            <h4>🍎 Apple</h4>
+            <span style="color: #a0a6b5; font-size: 13px;">Second Floor • Tech</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_s2:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center;">
+            <h4>👟 Nike</h4>
+            <span style="color: #a0a6b5; font-size: 13px;">Second Floor • Sports</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_s3:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center;">
+            <h4>👗 Zara</h4>
+            <span style="color: #a0a6b5; font-size: 13px;">First Floor • Fashion</span>
+        </div>
+        """, unsafe_allow_html=True)
+    with col_s4:
+        st.markdown("""
+        <div class="stitch-card" style="text-align: center;">
+            <h4>☕ Starbucks</h4>
+            <span style="color: #a0a6b5; font-size: 13px;">Ground Floor • Café</span>
+        </div>
+        """, unsafe_allow_html=True)
 
-if st.button("🔍 Search Directory", use_container_width=True):
+# ================= TAB 2: DIRECTORY ================= #
+with tab_dir:
+    st.markdown("<h3 style='color:#ff7b00; margin-top:15px;'>🔍 Search Mall Directory</h3>", unsafe_allow_html=True)
+    user_query = st.text_input("Type store, food, parking, offer, or facility...", key="dir_search_input")
+    if st.button("Search Directory", use_container_width=True):
+        if user_query.strip():
+            dir_res = get_response(user_query)
+            speak(dir_res)
+            st.session_state.search_count += 1
+            st.session_state.chat_history.append(("You", user_query))
+            st.session_state.chat_history.append(("Assistant", dir_res))
+            st.markdown(f"""
+            <div class="stitch-card" style="border-left: 5px solid #ff7b00; margin-top: 15px;">
+                <h4 style="color:#ff7b00; margin-bottom:6px;">Results</h4>
+                <div style="white-space: pre-wrap; font-size: 16px;">{dir_res}</div>
+            </div>
+            """, unsafe_allow_html=True)
 
-    if user_query:
+    st.markdown("<h4 style='color:#ffffff; margin-top:25px;'>📂 Browse by Category</h4>", unsafe_allow_html=True)
+    cat_col1, cat_col2, cat_col3, cat_col4 = st.columns(4)
+    with cat_col1:
+        if st.button("👗 Fashion Stores", use_container_width=True):
+            st.info(get_stores_by_category("Fashion"))
+    with cat_col2:
+        if st.button("🍔 Food Outlets", use_container_width=True):
+            st.info(get_all_food())
+    with cat_col3:
+        if st.button("📱 Electronics", use_container_width=True):
+            st.info(get_stores_by_category("Electronics"))
+    with cat_col4:
+        if st.button("💼 Career Openings", use_container_width=True):
+            st.info(get_jobs())
 
-        response = get_response(user_query)
+    with st.expander("📋 View Complete Store Directory"):
+        st.text(get_all_stores())
+    with st.expander("🎉 View Upcoming Mall Events"):
+        st.text(get_events())
 
-        speak(response)
+# ================= TAB 3: NAVIGATION ================= #
+with tab_nav:
+    st.markdown("<h3 style='color:#ff7b00; margin-top:15px;'>🗺️ Interactive Floor Navigation</h3>", unsafe_allow_html=True)
+    st.caption("Select a floor to view its layout and store locations.")
 
-        st.session_state.selected_map = None
-
-        # Auto floor map
-        if "First Floor" in response:
+    f_col1, f_col2, f_col3, f_col4 = st.columns(4)
+    with f_col1:
+        if st.button("🏢 Ground Floor", use_container_width=True):
+            st.session_state.selected_map = GROUND_FLOOR_PATH
+    with f_col2:
+        if st.button("⬆️ First Floor", use_container_width=True):
             st.session_state.selected_map = FIRST_FLOOR_PATH
-
-        elif "Second Floor" in response:
+    with f_col3:
+        if st.button("⬆️ Second Floor", use_container_width=True):
             st.session_state.selected_map = SECOND_FLOOR_PATH
-
-        elif "Third Floor" in response:
+    with f_col4:
+        if st.button("⬆️ Third Floor", use_container_width=True):
             st.session_state.selected_map = THIRD_FLOOR_PATH
 
-        elif "Ground Floor" in response:
-            st.session_state.selected_map = GROUND_FLOOR_PATH
-
-        # Analytics
-        st.session_state.search_count += 1
-
-        # Save conversation
-        st.session_state.chat_history.append(
-            ("You", user_query)
-        )
-
-        st.session_state.chat_history.append(
-            ("Assistant", response)
-        )
-
-        st.markdown(
-f"""
-<div style="
-background: rgba(255,255,255,0.12);
-color:white;
-padding:20px;
-border-radius:15px;
-border-left:4px solid #ff7b00;
-font-size:18px;
-margin-top:15px;
-">
-<b>🔍 Search Result</b><br><br>
-{response}
-</div>
-""",
-unsafe_allow_html=True
-)
-
-
-# ---------------- AUTO FLOOR MAP ---------------- #
-
-if st.session_state.selected_map:
-
-    st.subheader("📍 Recommended Floor Map")
-
-    st.image(
-        st.session_state.selected_map,
-        use_container_width=True
-    )
-# ---------------- CHAT HISTORY ---------------- #
-
-st.divider()
-st.subheader("💬 Conversation")
-
-if st.button("🗑 Clear Chat"):
-    st.session_state.chat_history = []
-    st.rerun()
-
-# Create downloadable text
-chat_text = ""
-
-for speaker, message in st.session_state.chat_history:
-    chat_text += f"{speaker}: {message}\n"
-
-st.download_button(
-    label="📥 Download Chat History",
-    data=chat_text,
-    file_name="mall_chat_history.txt",
-    mime="text/plain"
-)
-
-# Display conversation
-
-# Display conversation
-
-if len(st.session_state.chat_history) == 0:
-
-    st.info("No conversation yet.")
-
-else:
-
-    for speaker, message in st.session_state.chat_history:
-
-        if speaker == "You":
-
-            st.markdown(
-                f"""
-                <div style="
-                    background-color:white;
-                    color:black;
-                    padding:10px;
-                    border-radius:10px;
-                    margin:5px 0;
-                ">
-                👤 {speaker}: {message}
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
+    # Display Map
+    if st.session_state.selected_map and os.path.exists(st.session_state.selected_map):
+        st.image(st.session_state.selected_map, use_container_width=True)
+    else:
+        if os.path.exists(GROUND_FLOOR_PATH):
+            st.image(GROUND_FLOOR_PATH, caption="Ground Floor (Default View)", use_container_width=True)
         else:
+            st.info("Floor map image is currently loading.")
 
-            st.markdown(
-                f"""
-                <div style="
-                    background-color:white;
-                    color:black;
-                    padding:10px;
-                    border-radius:10px;
-                    margin:5px 0;
-                ">
-                🤖 {speaker}: {message}
-                </div>
-                """,
-                unsafe_allow_html=True
-            )
-
-# ---------------- SEARCH ANALYTICS ---------------- #
-
-st.subheader("📈 Search Analytics")
-
-st.metric(
-    label="Total Searches",
-    value=st.session_state.search_count
-)            
+    st.markdown("<h4 style='color:#ff7b00; margin-top:20px;'>🧭 Direct Store Routing</h4>", unsafe_allow_html=True)
+    nav_store_input = st.text_input("Enter a store name for route directions (e.g. Nike, Zara, KFC):", key="nav_input")
+    if st.button("Get Navigation Route", use_container_width=True):
+        if nav_store_input.strip():
+            nav_directions = get_navigation(nav_store_input)
+            st.success(nav_directions)
+            speak(nav_directions)
 
 # ---------------- FOOTER ---------------- #
 
-st.divider()
-
+st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
 st.markdown("""
-<div style="
-background: rgba(255,255,255,0.15);
-padding: 20px;
-border-radius: 15px;
-text-align: center;
-margin-top: 20px;
-">
-
-<h3 style="color:white;">
-🛍️ Smart Mall AI Assistant
-</h3>
-
-<p style="color:white;">
-Developed using Python, Streamlit, Voice Recognition and AI Search
-</p>
-
-<p style="color:white;">
-Phase 3 MVP
-</p>
-
+<div style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,123,0,0.2); color: #8a92a6; font-size: 13px;">
+    Smart Mall AI Voice Assistant • Built with Python, Streamlit & Google Gemini • Final Year Internship Project
 </div>
 """, unsafe_allow_html=True)
