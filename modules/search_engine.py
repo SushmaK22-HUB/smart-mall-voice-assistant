@@ -195,20 +195,23 @@ def get_stores_by_category(category_name):
 
 def get_navigation(store_name):
     query_lower = store_name.lower().strip()
-    # Pass 1: Whole-word match (so "how" doesn't match "W")
+    
+    # 1. Search in Stores
     for store in stores:
         name = store.get("name", "").strip().lower()
-        if name and re.search(rf"\b{re.escape(name)}\b", query_lower):
+        if name and (re.search(rf"\b{re.escape(name)}\b", query_lower) or query_lower in name or name in query_lower):
             return (
                 f"To reach {store.get('name')}, go to {store.get('floor', 'designated floor')} "
                 f"near {store.get('location', 'information desk')}."
             )
-    # Pass 2: Partial keyword match
-    for store in stores:
-        name = store.get("name", "").strip().lower()
-        if len(query_lower) >= 3 and query_lower in name:
-            return (
-                f"To reach {store.get('name')}, go to {store.get('floor', 'designated floor')} "
-                f"near {store.get('location', 'information desk')}."
-            )
+            
+    # 2. Search in Food Outlets (for KFC, Burger King, Starbucks, etc.)
+    for category in food:
+        for restaurant in category.get("restaurants", []):
+            name = restaurant.get("name", "").strip().lower()
+            if name and (re.search(rf"\b{re.escape(name)}\b", query_lower) or query_lower in name or name in query_lower):
+                return (
+                    f"To reach {restaurant.get('name')}, go to {restaurant.get('floor', 'Food Court')}."
+                )
+                
     return f"Navigation directions for {store_name} are currently unavailable."

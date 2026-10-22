@@ -1,5 +1,11 @@
 [
   {
+    "name": "Zara",
+    "category": "Fashion",
+    "floor": "First Floor",
+    "location": "Central Atrium"
+  },
+  {
     "name": "D-Mart",
     "category": "Hypermarket",
     "floor": "Lower Ground Floor",

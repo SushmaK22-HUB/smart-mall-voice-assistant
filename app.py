@@ -45,33 +45,38 @@ st.set_page_config(
 
 st.markdown("""
 <style>
-/* Clean Professional Dark Theme */
+/* Clean High-Contrast Dark Theme */
 .stApp {
     background: radial-gradient(circle at 50% 10%, #1e222d 0%, #0d0f14 100%);
-    color: #e6e6e6;
+    color: #ffffff !important;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
-/* Headings */
-h1, h2, h3, h4 {
+/* Force All Headings to Pure White */
+h1, h2, h3, h4, h5, h6 {
     color: #ffffff !important;
     font-weight: 700 !important;
     letter-spacing: -0.5px;
 }
 
+/* Force All Text Elements to High-Contrast Bright White */
+p, span, label, div {
+    color: #ffffff;
+}
+
 /* Stitch Card Containers */
 .stitch-card {
-    background: rgba(26, 30, 41, 0.75);
-    border: 1px solid rgba(255, 123, 0, 0.2);
+    background: rgba(24, 28, 38, 0.9);
+    border: 1px solid rgba(255, 123, 0, 0.35);
     border-radius: 18px;
     padding: 24px;
     backdrop-filter: blur(12px);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
     transition: transform 0.2s ease, border-color 0.2s ease;
 }
 
 .stitch-card:hover {
-    border-color: rgba(255, 123, 0, 0.5);
+    border-color: #ff7b00;
     transform: translateY(-2px);
 }
 
@@ -82,48 +87,71 @@ h1, h2, h3, h4 {
     border: none !important;
     border-radius: 14px !important;
     font-size: 16px !important;
-    font-weight: 600 !important;
+    font-weight: 700 !important;
     height: 48px !important;
-    box-shadow: 0 4px 15px rgba(255, 123, 0, 0.35) !important;
+    box-shadow: 0 4px 15px rgba(255, 123, 0, 0.4) !important;
     transition: all 0.25s ease !important;
 }
 
 .stButton > button:hover {
     transform: translateY(-2px) scale(1.02) !important;
-    box-shadow: 0 6px 20px rgba(255, 123, 0, 0.55) !important;
+    box-shadow: 0 6px 22px rgba(255, 123, 0, 0.6) !important;
 }
 
-/* Text Input Styling */
+/* Text Input Styling with Bright White Text */
 .stTextInput > div > div > input {
-    background-color: rgba(20, 24, 33, 0.9) !important;
+    background-color: rgba(20, 24, 33, 0.95) !important;
     color: #ffffff !important;
-    border: 1px solid rgba(255, 123, 0, 0.3) !important;
+    font-size: 16px !important;
+    border: 1.5px solid rgba(255, 123, 0, 0.4) !important;
     border-radius: 14px !important;
     padding: 12px 16px !important;
 }
 
 .stTextInput > div > div > input:focus {
     border-color: #ff7b00 !important;
-    box-shadow: 0 0 10px rgba(255, 123, 0, 0.4) !important;
+    box-shadow: 0 0 12px rgba(255, 123, 0, 0.5) !important;
+}
+
+/* Tabs Styling with Crisp Bright Text */
+button[data-baseweb="tab"] {
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    color: #ff7b00 !important;
+    border-bottom-color: #ff7b00 !important;
+}
+
+/* Expanders with High Contrast */
+.streamlit-expanderHeader {
+    background-color: rgba(26, 30, 41, 0.85) !important;
+    color: #ffffff !important;
+    font-size: 16px !important;
+    font-weight: 600 !important;
+    border: 1px solid rgba(255, 123, 0, 0.25) !important;
+    border-radius: 12px !important;
 }
 
 /* Sidebar Dark Glass */
 section[data-testid="stSidebar"] {
     background-color: #0b0d12 !important;
-    border-right: 1px solid rgba(255, 123, 0, 0.2) !important;
+    border-right: 1px solid rgba(255, 123, 0, 0.25) !important;
 }
 
 /* Status Badge */
 .status-pill {
     display: inline-flex;
     align-items: center;
-    background: rgba(0, 230, 118, 0.12);
-    color: #00e676;
-    border: 1px solid rgba(0, 230, 118, 0.3);
+    background: rgba(0, 230, 118, 0.18);
+    color: #00ff88 !important;
+    border: 1px solid rgba(0, 230, 118, 0.4);
     padding: 6px 14px;
     border-radius: 20px;
     font-size: 13px;
-    font-weight: 600;
+    font-weight: 700;
 }
 </style>
 """, unsafe_allow_html=True)
@@ -138,7 +166,7 @@ st.markdown("""
     <span class="status-pill">
         🟢 Assistant Online & Ready
     </span>
-    <p style="color: #a0a6b5; font-size: 16px; margin-top: 10px;">
+    <p style="color: #ffffff; font-size: 16px; margin-top: 10px; font-weight: 500;">
         Speak or type to navigate stores, food outlets, offers, events, and floor maps.
     </p>
 </div>
@@ -147,12 +175,12 @@ st.markdown("""
 # ---------------- HERO VOICE ASSISTANT SECTION ---------------- #
 
 st.markdown("""
-<div class="stitch-card" style="text-align: center; margin-bottom: 25px; border: 2px solid rgba(255,123,0,0.35);">
-    <h3 style="color: #ffffff; margin-bottom: 6px;">
+<div class="stitch-card" style="text-align: center; margin-bottom: 25px; border: 2px solid rgba(255,123,0,0.4);">
+    <h3 style="color: #ffffff; margin-bottom: 6px; font-size: 24px;">
         Tap Below to Speak with AI
     </h3>
-    <p style="color: #b0b7c3; font-size: 15px; margin-bottom: 20px;">
-        Try saying: <i>"Where is Nike?"</i>, <i>"Food court on third floor"</i>, or <i>"Today's offers"</i>
+    <p style="color: #ffffff; font-size: 16px; margin-bottom: 20px;">
+        Try saying: <b style="color: #ff9d3b;">"Where is Nike?"</b>, <b style="color: #ff9d3b;">"Food court on third floor"</b>, or <b style="color: #ff9d3b;">"Are pets allowed?"</b>
     </p>
 </div>
 """, unsafe_allow_html=True)
@@ -165,20 +193,18 @@ if speak_button:
     with st.spinner("Listening to your voice..."):
         user_text = listen()
 
+    # Immediate Question Display
     st.markdown(f"""
     <div class="stitch-card" style="border-left: 5px solid #ff7b00; margin-top: 20px; padding: 18px;">
-        <span style="color: #ff7b00; font-weight: 700; font-size: 14px; text-transform: uppercase;">🎤 You Asked</span>
-        <p style="font-size: 18px; color: #ffffff; margin-top: 6px; margin-bottom: 0;">{user_text}</p>
+        <span style="color: #ff7b00; font-weight: 800; font-size: 14px; text-transform: uppercase;">🎤 You Asked</span>
+        <p style="font-size: 19px; color: #ffffff; margin-top: 6px; margin-bottom: 0; font-weight: 600;">{user_text}</p>
     </div>
     """, unsafe_allow_html=True)
 
     with st.spinner("Finding information..."):
         response = get_response(user_text)
 
-    # Audio spoken output
-    speak(response)
-
-    # Automatic Floor Map Detection based on response
+    # Automatic Floor Map Detection
     st.session_state.selected_map = None
     if "first floor" in response.lower():
         st.session_state.selected_map = FIRST_FLOOR_PATH
@@ -194,16 +220,20 @@ if speak_button:
     st.session_state.chat_history.append(("You", user_text))
     st.session_state.chat_history.append(("Assistant", response))
 
+    # Instant Display of Assistant Response (Zero Delay!)
     st.markdown(f"""
     <div class="stitch-card" style="border-left: 5px solid #00e676; margin-top: 15px; padding: 18px;">
-        <span style="color: #00e676; font-weight: 700; font-size: 14px; text-transform: uppercase;">🤖 Assistant</span>
-        <div style="font-size: 18px; color: #ffffff; margin-top: 6px; white-space: pre-wrap;">{response}</div>
+        <span style="color: #00e676; font-weight: 800; font-size: 14px; text-transform: uppercase;">🤖 Assistant Reply</span>
+        <div style="font-size: 18px; color: #ffffff; margin-top: 6px; white-space: pre-wrap; line-height: 1.6;">{response}</div>
     </div>
     """, unsafe_allow_html=True)
 
     if st.session_state.selected_map and os.path.exists(st.session_state.selected_map):
         st.markdown("<h4 style='color:#ff7b00; text-align:center; margin-top:20px;'>📍 Recommended Floor Map</h4>", unsafe_allow_html=True)
         st.image(st.session_state.selected_map, use_container_width=True)
+
+    # Background audio speech (Never freezes the UI!)
+    speak(response)
 
 st.markdown("<div style='margin-bottom: 25px;'></div>", unsafe_allow_html=True)
 
@@ -221,24 +251,24 @@ with st.sidebar:
     if st.button("🚨 Emergency Assistance", use_container_width=True):
         st.error(get_emergency())
 
-    st.markdown("---")
+    st.markdown("<hr style='border: 1px solid rgba(255,123,0,0.25);'>", unsafe_allow_html=True)
 
     # Analytics Counter
     st.markdown("### 📈 Live Analytics")
     st.metric(label="Total Interactions", value=st.session_state.search_count)
 
-    st.markdown("---")
+    st.markdown("<hr style='border: 1px solid rgba(255,123,0,0.25);'>", unsafe_allow_html=True)
 
     # Conversation History
     st.markdown("### 💬 Chat History")
     if len(st.session_state.chat_history) == 0:
-        st.caption("No conversations recorded yet.")
+        st.markdown("<span style='color: #ffffff;'>No conversations recorded yet.</span>", unsafe_allow_html=True)
     else:
         for speaker, message in st.session_state.chat_history[-6:]:
             if speaker == "You":
-                st.markdown(f"**👤 You:** {message}")
+                st.markdown(f"**👤 You:** <span style='color: #ffffff;'>{message}</span>", unsafe_allow_html=True)
             else:
-                st.markdown(f"**🤖 AI:** {message}")
+                st.markdown(f"**🤖 AI:** <span style='color: #ffffff;'>{message}</span>", unsafe_allow_html=True)
 
         col_h1, col_h2 = st.columns(2)
         with col_h1:
@@ -249,8 +279,8 @@ with st.sidebar:
             chat_text = "\n".join([f"{s}: {m}" for s, m in st.session_state.chat_history])
             st.download_button("📥 Save", data=chat_text, file_name="chat_history.txt", use_container_width=True)
 
-    st.markdown("---")
-    st.caption("Final Year B.E. AI & Data Science Project • Stanley College")
+    st.markdown("<hr style='border: 1px solid rgba(255,123,0,0.25);'>", unsafe_allow_html=True)
+    st.markdown("<p style='color: #ffffff; font-size: 12px;'>Final Year B.E. AI & Data Science Project<br>Stanley College</p>", unsafe_allow_html=True)
 
 # ---------------- MAIN CONTENT: 3 STITCH TABS ---------------- #
 
@@ -268,24 +298,24 @@ with tab_home:
         st.markdown("""
         <div class="stitch-card" style="text-align: center; height: 130px;">
             <h4 style="color: #ff7b00; margin-bottom: 5px;">🔥 Flat 50% OFF</h4>
-            <b>Levi's</b><br>
-            <span style="color:#b0b7c3; font-size:13px;">Summer Fashion Sale</span>
+            <b style="color: #ffffff; font-size: 17px;">Levi's</b><br>
+            <span style="color:#ffffff; font-size:14px;">Summer Fashion Sale</span>
         </div>
         """, unsafe_allow_html=True)
     with col_o2:
         st.markdown("""
         <div class="stitch-card" style="text-align: center; height: 130px;">
             <h4 style="color: #ff7b00; margin-bottom: 5px;">🍔 BOGO Deal</h4>
-            <b>Burger King</b><br>
-            <span style="color:#b0b7c3; font-size:13px;">Buy 1 Get 1 Burger Free</span>
+            <b style="color: #ffffff; font-size: 17px;">Burger King</b><br>
+            <span style="color:#ffffff; font-size:14px;">Buy 1 Get 1 Burger Free</span>
         </div>
         """, unsafe_allow_html=True)
     with col_o3:
         st.markdown("""
         <div class="stitch-card" style="text-align: center; height: 130px;">
             <h4 style="color: #ff7b00; margin-bottom: 5px;">👟 Mega Sale</h4>
-            <b>Nike</b><br>
-            <span style="color:#b0b7c3; font-size:13px;">Exclusive Sportswear Deals</span>
+            <b style="color: #ffffff; font-size: 17px;">Nike</b><br>
+            <span style="color:#ffffff; font-size:14px;">Exclusive Sportswear Deals</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -294,29 +324,29 @@ with tab_home:
     with col_s1:
         st.markdown("""
         <div class="stitch-card" style="text-align: center;">
-            <h4>🍎 Apple</h4>
-            <span style="color: #a0a6b5; font-size: 13px;">Second Floor • Tech</span>
+            <h4 style="color: #ffffff;">🍎 Apple</h4>
+            <span style="color: #ffffff; font-size: 14px; font-weight: 500;">Second Floor • Tech</span>
         </div>
         """, unsafe_allow_html=True)
     with col_s2:
         st.markdown("""
         <div class="stitch-card" style="text-align: center;">
-            <h4>👟 Nike</h4>
-            <span style="color: #a0a6b5; font-size: 13px;">Second Floor • Sports</span>
+            <h4 style="color: #ffffff;">👟 Nike</h4>
+            <span style="color: #ffffff; font-size: 14px; font-weight: 500;">Second Floor • Sports</span>
         </div>
         """, unsafe_allow_html=True)
     with col_s3:
         st.markdown("""
         <div class="stitch-card" style="text-align: center;">
-            <h4>👗 Zara</h4>
-            <span style="color: #a0a6b5; font-size: 13px;">First Floor • Fashion</span>
+            <h4 style="color: #ffffff;">👗 Zara</h4>
+            <span style="color: #ffffff; font-size: 14px; font-weight: 500;">First Floor • Fashion</span>
         </div>
         """, unsafe_allow_html=True)
     with col_s4:
         st.markdown("""
         <div class="stitch-card" style="text-align: center;">
-            <h4>☕ Starbucks</h4>
-            <span style="color: #a0a6b5; font-size: 13px;">Ground Floor • Café</span>
+            <h4 style="color: #ffffff;">☕ Starbucks</h4>
+            <span style="color: #ffffff; font-size: 14px; font-weight: 500;">Ground Floor • Café</span>
         </div>
         """, unsafe_allow_html=True)
 
@@ -327,41 +357,45 @@ with tab_dir:
     if st.button("Search Directory", use_container_width=True):
         if user_query.strip():
             dir_res = get_response(user_query)
-            speak(dir_res)
             st.session_state.search_count += 1
             st.session_state.chat_history.append(("You", user_query))
             st.session_state.chat_history.append(("Assistant", dir_res))
+            
+            # Display result immediately
             st.markdown(f"""
             <div class="stitch-card" style="border-left: 5px solid #ff7b00; margin-top: 15px;">
-                <h4 style="color:#ff7b00; margin-bottom:6px;">Results</h4>
-                <div style="white-space: pre-wrap; font-size: 16px;">{dir_res}</div>
+                <h4 style="color:#ff7b00; margin-bottom:6px;">Search Results</h4>
+                <div style="white-space: pre-wrap; font-size: 17px; color: #ffffff; line-height: 1.6;">{dir_res}</div>
             </div>
             """, unsafe_allow_html=True)
+            
+            # Speak in background
+            speak(dir_res)
 
     st.markdown("<h4 style='color:#ffffff; margin-top:25px;'>📂 Browse by Category</h4>", unsafe_allow_html=True)
     cat_col1, cat_col2, cat_col3, cat_col4 = st.columns(4)
     with cat_col1:
         if st.button("👗 Fashion Stores", use_container_width=True):
-            st.info(get_stores_by_category("Fashion"))
+            st.success(get_stores_by_category("Fashion"))
     with cat_col2:
         if st.button("🍔 Food Outlets", use_container_width=True):
-            st.info(get_all_food())
+            st.success(get_all_food())
     with cat_col3:
         if st.button("📱 Electronics", use_container_width=True):
-            st.info(get_stores_by_category("Electronics"))
+            st.success(get_stores_by_category("Electronics"))
     with cat_col4:
         if st.button("💼 Career Openings", use_container_width=True):
-            st.info(get_jobs())
+            st.success(get_jobs())
 
     with st.expander("📋 View Complete Store Directory"):
-        st.text(get_all_stores())
+        st.markdown(f"<div style='color: #ffffff; font-size: 15px; white-space: pre-wrap;'>{get_all_stores()}</div>", unsafe_allow_html=True)
     with st.expander("🎉 View Upcoming Mall Events"):
-        st.text(get_events())
+        st.markdown(f"<div style='color: #ffffff; font-size: 15px; white-space: pre-wrap;'>{get_events()}</div>", unsafe_allow_html=True)
 
 # ================= TAB 3: NAVIGATION ================= #
 with tab_nav:
     st.markdown("<h3 style='color:#ff7b00; margin-top:15px;'>🗺️ Interactive Floor Navigation</h3>", unsafe_allow_html=True)
-    st.caption("Select a floor to view its layout and store locations.")
+    st.markdown("<p style='color:#ffffff; font-size:15px;'>Select a floor to view its layout and store locations.</p>", unsafe_allow_html=True)
 
     f_col1, f_col2, f_col3, f_col4 = st.columns(4)
     with f_col1:
@@ -398,7 +432,7 @@ with tab_nav:
 
 st.markdown("<div style='margin-top: 50px;'></div>", unsafe_allow_html=True)
 st.markdown("""
-<div style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,123,0,0.2); color: #8a92a6; font-size: 13px;">
+<div style="text-align: center; padding: 20px; border-top: 1px solid rgba(255,123,0,0.25); color: #ffffff; font-size: 13px;">
     Smart Mall AI Voice Assistant • Built with Python, Streamlit & Google Gemini • Final Year Internship Project
 </div>
 """, unsafe_allow_html=True)
